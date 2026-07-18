@@ -656,8 +656,9 @@ footer {
 
     /* Transform navigation links into a clean, modern scrollable tab bar */
     header nav {
-        display: flex !important;
-        flex-direction: row !important;
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr);
+        text-align: center;
         width: 100% !important;
         overflow-x: auto;
         white-space: nowrap;
@@ -672,7 +673,6 @@ footer {
     }
 
     header nav a {
-        display: inline-block !important;
         width: auto !important;
         padding: 6px 16px !important;
         background: rgba(255, 255, 255, 0.15);
@@ -682,9 +682,10 @@ footer {
         font-weight: 500;
     }
 
-    header nav a:last-child:nth-child(odd){
+    header nav a:nth-child(5){
         grid-column: 1 / span 4;
         justify-self: center;
+        width: 50%;
     }
 
     header nav a#select {

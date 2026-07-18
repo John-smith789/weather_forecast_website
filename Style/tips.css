@@ -478,57 +478,297 @@ footer {
    6. Responsive Adaptations
    ========================================================================== */
 @media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 20px 24px;
+    /* ==========================================
+       1. Global Mobile Reset & Body Controls
+       ========================================== */
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f1f5f9;
     }
 
+    .dark body {
+        background-color: #0b0f19;
+    }
+
+    /* ==========================================
+       2. App Header & Brand Styling
+       ========================================== */
+    header {
+        flex-direction: row !important; /* Keep logo and dark mode button aligned horizontally */
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 16px 20px !important;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .logo {
+        gap: 8px !important;
+    }
+
+    .logo i {
+        font-size: 28px !important;
+    }
+
+    .logo-text h2 {
+        font-size: 18px !important;
+    }
+
+    .logo-text p {
+        display: none; /* Hide subtitle on mobile to save precious vertical space */
+    }
+
+    /* Transform navigation links into a clean, modern scrollable tab bar */
     header nav {
-        flex-direction: column;
-        width: 100%;
-        gap: 0; /* Remove gap to handle with paddings and borders */
-        margin-top: 10px;
+        display: flex !important;
+        flex-direction: row !important;
+        width: 100% !important;
+        overflow-x: auto;
+        white-space: nowrap;
+        gap: 16px !important;
+        margin-top: 12px !important;
+        padding: 4px 0 8px 0;
+        scrollbar-width: none; /* Hide scrollbars */
+    }
+    
+    header nav::-webkit-scrollbar {
+        display: none;
     }
 
     header nav a {
-        display: block;
-        width: 100%;
-        padding: 12px 0;
-        text-align: center;
-        /* Semi-transparent line matching the background sky blue shades */
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
+        display: inline-block !important;
+        width: auto !important;
+        padding: 6px 16px !important;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 20px;
+        border-bottom: none !important;
+        font-size: 14px !important;
+        font-weight: 500;
     }
 
-    /* Remove border on the last item before the theme toggle button */
-    header nav a:nth-last-of-type(1) {
-        border-bottom: none;
+    header nav a#select {
+        background: #2563eb !important;
+        color: white !important;
+        text-decoration: none !important;
     }
 
     header nav button {
-        margin-top: 15px;
+        margin-top: 0 !important;
+        position: absolute;
+        right: 20px;
+        top: 16px;
+    }
+
+    /* ==========================================
+       3. Main Hero & Dynamic Content Wrapper
+       ========================================== */
+    .container {
+        min-height: auto !important;
+        padding: 0 16px 32px 16px !important;
+        background-size: cover !important;
+        background-position: center bottom !important;
+
     }
 
     .content {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: column !important;
+        gap: 24px !important;
+        margin-top: 20px !important;
     }
 
     .content-text {
-        text-align: center;
+        text-align: center !important;
+        width: 100%;
     }
 
+    .content-text h1 {
+        font-size: 28px !important;
+        font-weight: 800;
+    }
+
+    .content-text p {
+        padding: 8px 0 16px 0 !important;
+        font-size: 14px !important;
+    }
+
+    /* Mobile Search Bar Styling */
     .search-box {
-        margin: 0 auto;
+        margin: 0 auto !important;
+        max-width: 100% !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-radius: 24px;
     }
 
+    .search-box input[type="text"] {
+        height: 46px !important;
+        font-size: 15px !important;
+    }
+
+    .search-dropdown {
+        border-radius: 16px !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2) !important;
+    }
+
+    /* ==========================================
+       4. App-Style Weather Dashboard Cards
+       ========================================== */
     .weather-card {
-        max-width: 100%;
+        max-width: 100% !important;
+        border-radius: 24px !important;
+        background: rgba(255, 255, 255, 0.18) !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .weather-card-detail {
+        padding: 20px !important;
+    }
+
+    .weather-card-detail h1 {
+        font-size: 48px !important;
+    }
+
+    .weather-icon {
+        font-size: 64px !important;
+    }
+
+    .weather-condition {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 16px 8px !important;
+        gap: 8px;
+    }
+
+    .detail {
+        flex-direction: column !important;
+        text-align: center;
+        gap: 4px !important;
+    }
+
+    .detail i {
+        font-size: 20px !important;
+        color: #38bdf8;
+    }
+
+    /* Glassmorphism for Search Results Screen (Forecast.html) */
+    .search-result {
+        flex-direction: column !important;
+        padding: 24px 16px !important;
+        border-radius: 24px !important;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(248, 250, 252, 0.7)) !important;
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    }
+
+    .dark .search-result {
+        background: linear-gradient(135deg, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.7)) !important;
+        border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }
+
+    .search-result img {
+        display: block !important; /* Keep city image, but frame it cleanly */
+        width: 100% !important;
+        height: 140px !important;
+        border-radius: 16px !important;
+    }
+
+    .search-data-grid {
+        width: 100% !important;
+        grid-template-columns: repeat(2, 1fr) !important; /* 2x2 Clean metric grid */
+        gap: 12px !important;
+    }
+
+    .metric-item {
+        background: rgba(0, 0, 0, 0.03);
+        padding: 10px 12px !important;
+        border-radius: 12px;
+        border-bottom: none !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 4px !important;
+    }
+
+    .dark .metric-item {
+        background: rgba(255, 255, 255, 0.03);
+    }
+
+    /* Horizontal Swipe Panel for Hourly Tracking */
+    .hourly-forecast {
+        display: flex !important;
+        grid-template-columns: none !important;
+        overflow-x: auto !important;
+        gap: 12px !important;
+        padding: 4px 4px 12px 4px !important;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .hourly-detail {
+        min-width: 85px !important;
+        flex-shrink: 0 !important;
+        border-radius: 16px !important;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.03) !important;
+    }
+
+    /* 7-Day Forecast Grid Scaling */
+    .seven-day-forecast {
+        grid-template-columns: repeat(2, 1fr) !important; /* Adaptive grid rows for Android */
+        gap: 12px !important;
+    }
+
+    .seven-day-detail {
+        padding: 16px 12px !important;
+        border-radius: 16px !important;
+    }
+
+    /* ==========================================
+       5. Popular Cities List Layout
+       ========================================== */
+    .popular-city-weather-card {
+        padding: 32px 16px !important;
+    }
+
+    .popular-city {
+        grid-template-columns: 1fr !important; /* Stack vertically like an app dashboard */
+        gap: 16px !important;
+    }
+
+    .city {
+        max-width: 100% !important;
+        flex-direction: row !important; /* Left-to-right rows instead of tall boxes */
+        height: 90px;
+        align-items: center;
+        border-radius: 16px !important;
+    }
+
+    .city img {
+        width: 100px !important;
+        height: 100% !important;
+    }
+
+    .city-detail {
+        flex: 1 !important;
+        padding: 0 16px !important;
+    }
+
+    /* ==========================================
+       6. Compact Footer
+       ========================================== */
+    footer {
+        padding: 32px 16px 24px 16px !important;
+
     }
 
     .footer-content {
-        flex-direction: column;
-        text-align: center;
+        flex-direction: column !important;
+        gap: 20px !important;
+        text-align: center !important;
+    }
+
+    .footer-links {
+        justify-content: center;
+        gap: 16px !important;
     }
 }

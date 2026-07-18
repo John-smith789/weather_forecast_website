@@ -620,7 +620,6 @@ footer {
     body {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         background-color: #f1f5f9;
-        padding-bottom: 60px; /* Space for a bottom app navigation if needed */
     }
 
     .dark body {
@@ -681,6 +680,11 @@ footer {
         border-bottom: none !important;
         font-size: 14px !important;
         font-weight: 500;
+    }
+
+    header nav a:last-child:nth-child(odd){
+        grid-column: 1 / span 4;
+        justify-self: center;
     }
 
     header nav a#select {

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Forecast</title>
+
+    <script>
+      (function() {
+        if (localStorage.getItem("theme") === "dark") {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+
+    <link rel="stylesheet" href="Style/tips.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <header>
+      <div class="logo">
+          <i class="fa-solid fa-cloud-sun"></i>
+          <div class="logo-text">
+              <h2>Daily Forecast</h2>
+              <p>Your Daily Weather Companion</p>
+          </div>
+      </div>
+      <nav>
+          <a href="home.html">Home</a>
+          <a href="forecast.html">Forecast</a>
+          <a href="tips.html" id="select">Tips</a>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+          <button type="button" aria-label="Toggle theme" onclick="Toggle()"><i id="theme-icon" class="fa-solid fa-moon"></i></button>
+      </nav>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero-title">Weather Tips</h1>
+      <p class="hero-subtitle">Useful tips for different weather conditions</p>
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="tips-grid">
+
+      <article class="tip-card">
+        <div class="icon-badge sunny">
+          <i class="fa-solid fa-sun"></i>
+        </div>
+        <h2 class="card-title">Sunny Day Tips</h2>
+        <ul class="tips-list">
+          <li><i class="fa-solid fa-check"></i> Drink plenty of water</li>
+          <li><i class="fa-solid fa-check"></i> Wear sunglasses</li>
+          <li><i class="fa-solid fa-check"></i> Use sunscreen</li>
+          <li><i class="fa-solid fa-check"></i> Wear light clothes</li>
+        </ul>
+      </article>
+
+      <article class="tip-card">
+        <div class="icon-badge rainy">
+          <i class="fa-solid fa-cloud-showers-heavy"></i>
+        </div>
+        <h2 class="card-title">Rainy Day Tips</h2>
+        <ul class="tips-list">
+          <li><i class="fa-solid fa-check"></i> Carry an umbrella</li>
+          <li><i class="fa-solid fa-check"></i> Wear waterproof shoes</li>
+          <li><i class="fa-solid fa-check"></i> Drive carefully</li>
+          <li><i class="fa-solid fa-check"></i> Avoid flooded areas</li>
+        </ul>
+      </article>
+
+      <article class="tip-card">
+        <div class="icon-badge windy">
+          <i class="fa-solid fa-wind"></i>
+        </div>
+        <h2 class="card-title">Windy Day Tips</h2>
+        <ul class="tips-list">
+          <li><i class="fa-solid fa-check"></i> Hold on to your hat</li>
+          <li><i class="fa-solid fa-check"></i> Close windows tightly</li>
+          <li><i class="fa-solid fa-check"></i> Drive slowly</li>
+          <li><i class="fa-solid fa-check"></i> Avoid tall trees</li>
+        </ul>
+      </article>
+
+      <article class="tip-card">
+        <div class="icon-badge foggy">
+          <i class="fa-solid fa-smog"></i>
+        </div>
+        <h2 class="card-title">Foggy Day Tips</h2>
+        <ul class="tips-list">
+          <li><i class="fa-solid fa-check"></i> Drive with low beam</li>
+          <li><i class="fa-solid fa-check"></i> Maintain safe distance</li>
+          <li><i class="fa-solid fa-check"></i> Avoid over speeding</li>
+          <li><i class="fa-solid fa-check"></i> Use fog lights</li>
+        </ul>
+      </article>
+
+    </div>
+  </main>
+
+  <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <i class="fa-solid fa-cloud"></i>
+                <h3>Daily Forecast</h3>
+            </div>
+            <div class="footer-links">
+                <a href="home.html">Home</a>
+                <a href="forecast.html">Forecast</a>
+                <a href="tips.html">Tips</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="social-buttons">
+                <button type="button" aria-label="Facebook" id="facebook"><i class="fa-brands fa-facebook"></i></button>
+                <button type="button" aria-label="Twitter" id="twitter"><i class="fa-brands fa-twitter"></i></button>
+                <button type="button" aria-label="Instagram" id="instagram"><i class="fa-brands fa-instagram"></i></button>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Daily Forecast. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+</body>
+</html>

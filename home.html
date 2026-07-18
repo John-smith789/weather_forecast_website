@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Forecast</title>
+
+    <script>
+      (function() {
+        if (localStorage.getItem("theme") === "dark") {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+
+    <link rel="stylesheet" href="Style/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fa-solid fa-cloud-sun"></i>
+                <div class="logo-text">
+                    <h2>Daily Forecast</h2>
+                    <p>Your Daily Weather Companion</p>
+                </div>
+            </div>
+            <nav>
+                <a href="home.html" id="select">Home</a>
+                <a href="forecast.html">Forecast</a>
+                <a href="tips.html">Tips</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <button type="button" aria-label="Toggle theme" onclick="Toggle()"><i id="theme-icon" class="fa-solid fa-moon"></i></button>
+            </nav>
+        </header>
+
+        <div class="content">
+            <div class="content-text">
+                <h1>Stay Ahead<br>of the Weather</h1>
+                <p>Get real-time weather updates and plan your day better</p>
+                
+                <div class="search-box">
+                    <input type="text" name="search" id="search" placeholder="Search your city (e.g. Magway, Mandalay...)">
+                    <button type="button" aria-label="Search"><i class="fa-solid fa-search"></i></button>
+                </div>
+            </div>
+
+            <div class="weather-card">
+                <div class="weather-card-detail">
+                    <div>
+                        <h4>TODAY'S WEATHER</h4>
+                        <h1>28°C</h1>
+                        <p>Sunny</p>
+                        <p><i class="fa-solid fa-location-dot"></i> Yangon, Myanmar</p>
+                    </div>
+                    <i class="fa-solid fa-sun weather-icon"></i>
+                </div>
+                <div class="weather-condition">
+                    <div class="detail">
+                        <i class="fa-solid fa-droplet"></i>
+                        <div>
+                            <h4>Humidity</h4>
+                            <h3>65%</h3>
+                        </div>
+                    </div>
+                    <div class="detail">
+                        <i class="fa-solid fa-wind"></i>
+                        <div>
+                            <h4>Wind Speed</h4>
+                            <h3>12 km/h</h3>
+                        </div>
+                    </div>
+                    <div class="detail">
+                        <i class="fa-solid fa-temperature-half"></i>
+                        <div>
+                            <h4>Feels Like</h4>
+                            <h3>29°C</h3>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </div>
+
+    <section class="popular-city-weather-card">
+        <h2>Popular Cities</h2>
+        <div class="popular-city">
+            <div class="city">
+                <img src="Style/images/yangon.png" alt="Yangon">
+                <div class="city-detail">
+                    <div>
+                        <h3>Yangon</h3>
+                        <p>Sunny</p>
+                    </div>
+                    <h1>28°C</h1>
+                </div>
+            </div>
+            <div class="city">
+                <img src="Style/images/mandalay.png" alt="Mandalay">
+                <div class="city-detail">
+                    <div>
+                        <h3>Mandalay</h3>
+                        <p>Sunny</p>
+                    </div>
+                    <h1>30°C</h1>
+                </div>
+            </div>
+            <div class="city">
+                <img src="Style/images/naypyidaw.png" alt="Naypyidaw">
+                <div class="city-detail">
+                    <div>
+                        <h3>Naypyidaw</h3>
+                        <p>Sunny</p>
+                    </div>
+                    <h1>29°C</h1>
+                </div>
+            </div>
+            <div class="city">
+                <img src="Style/images/pyinoolwin.png" alt="Pyinoolwin">
+                <div class="city-detail">
+                    <div>
+                        <h3>Pyinoolwin</h3>
+                        <p>Cloudy</p>
+                    </div>
+                    <h1>22°C</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <i class="fa-solid fa-cloud"></i>
+                <h3>Daily Forecast</h3>
+            </div>
+            <div class="footer-links">
+                <a href="home.html">Home</a>
+                <a href="forecast.html">Forecast</a>
+                <a href="tips.html">Tips</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="social-buttons">
+                <button type="button" aria-label="Facebook" id="facebook"><i class="fa-brands fa-facebook"></i></button>
+                <button type="button" aria-label="Twitter" id="twitter"><i class="fa-brands fa-x-twitter"></i></button>
+                <button type="button" aria-label="Instagram" id="instagram"><i class="fa-brands fa-instagram"></i></button>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Daily Forecast. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+</body>
+</html>

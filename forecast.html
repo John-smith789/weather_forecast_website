@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Forecast</title>
+
+    <script>
+      (function() {
+        if (localStorage.getItem("theme") === "dark") {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+
+    <link rel="stylesheet" href="Style/forecast.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-cloud-sun"></i>
+            <div class="logo-text">
+                <h2>Daily Forecast</h2>
+                <p>Your Daily Weather Companion</p>
+            </div>
+        </div>
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="forecast.html" id="select">Forecast</a>
+            <a href="tips.html">Tips</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <button type="button" aria-label="Toggle theme" onclick="Toggle()"><i id="theme-icon" class="fa-solid fa-moon"></i></button>
+        </nav>
+    </header>
+  
+    <main>
+        <div class="search-container">
+            <h4>Search City</h4>
+            <div class="search-box">
+                <input type="text" name="search" id="search" placeholder="Search your city...">
+                <button type="button" aria-label="Search"><i class="fa-solid fa-search"></i></button>    
+            </div>
+            
+        </div>
+        <div class="search-result">
+            <div class="search-detail">
+                <h3>Current Weather</h3>
+                <h3>Yangon, Myanmar</h3>
+                <h1>30°C</h1>
+                <p>Sunny</p>
+            </div>
+            <i class="fa-solid fa-sun"></i>
+            <!-- Replace the old .result-name and .result divs with this single grid container -->
+            <div class="search-data-grid">
+                <div class="metric-item">
+                    <span class="metric-label">Humidity</span>
+                    <span class="metric-value">65%</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">Wind Speed</span>
+                    <span class="metric-value">12km/h</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">Pressure</span>
+                    <span class="metric-value">1012hpa</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">Feels Like</span>
+                    <span class="metric-value">32°C</span>
+                </div>
+            </div>
+            <img src="Style/images/yangon.png" alt="yangon">
+        </div>
+        <h3 id="label">7-Day Forecast</h3>
+        <div class="seven-day-forecast">
+            <div class="seven-day-detail">
+                <h3>Mon</h3>
+                <p>May 20</p>
+                <i class="fa-solid fa-sun"></i>
+                <h2>30°C</h2>
+                <p>22°C</p>
+            </div>
+            <div class="seven-day-detail">
+                <h3>Tue</h3>
+                <p>May 21</p>
+                <i class="fa-solid fa-cloud-rain"></i>
+                <h2>28°C</h2>
+                <p>21°C</p>
+            </div>
+            <div class="seven-day-detail">
+                <h3>Wed</h3>
+                <p>May 22</p>
+                <i class="fa-solid fa-cloud"></i>
+                <h2>29°C</h2>
+                <p>22°C</p>
+            </div>
+            <div class="seven-day-detail">
+                <h3>Thu</h3>
+                <p>May 23</p>
+                <i class="fa-solid fa-cloud-rain"></i>
+                <h2>27°C</h2>
+                <p>21°C</p>
+            </div>
+            <div class="seven-day-detail">
+                <h3>Fri</h3>
+                <p>May 24</p>
+                <i class="fa-solid fa-cloud-sun"></i>
+                <h2>29°C</h2>
+                <p>22°C</p>
+            </div>
+            <div class="seven-day-detail">
+                <h3>Sat</h3>
+                <p>May 25</p>
+                <i class="fa-solid fa-cloud-rain"></i>
+                <h2>28°C</h2>
+                <p>21°C</p>
+            </div>
+            <div class="seven-day-detail">
+                <h3>Sun</h3>
+                <p>May 26</p>
+                <i class="fa-solid fa-sun"></i>
+                <h2>30°C</h2>
+                <p>23°C</p>
+            </div>
+        </div>
+        <h3 id="label">Hourly Forecast</h3>
+        <div class="hourly-forecast">
+            <div class="hourly-detail">
+                <h3>Now</h3>
+                <i class="fa-solid fa-sun"></i>
+                <h3>30°C</h3>
+            </div>
+            <div class="hourly-detail">
+                <h3>10 AM</h3>
+                <i class="fa-solid fa-sun"></i>
+                <h3>31°C</h3>
+            </div>
+            <div class="hourly-detail">
+                <h3>11 AM</h3>
+                <i class="fa-solid fa-sun"></i>
+                <h3>32°C</h3>
+            </div>
+            <div class="hourly-detail">
+                <h3>12 AM</h3>
+                <i class="fa-solid fa-sun"></i>
+                <h3>32°C</h3>
+            </div>
+            <div class="hourly-detail">
+                <h3>1 PM</h3>
+                <i class="fa-solid fa-cloud-sun"></i>
+                <h3>31°C</h3>
+            </div>
+            <div class="hourly-detail">
+                <h3>2 PM</h3>
+                <i class="fa-solid fa-cloud-sun"></i>
+                <h3>30°C</h3>
+            </div>
+            <div class="hourly-detail">
+                <h3>3 PM</h3>
+                <i class="fa-solid fa-cloud-sun"></i>
+                <h3>29°C</h3>
+            </div>
+            <div class="hourly-detail">
+                <h3>4 PM</h3>
+                <i class="fa-solid fa-sun"></i>
+                <h3>28°C</h3>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <i class="fa-solid fa-cloud"></i>
+                <h3>Daily Forecast</h3>
+            </div>
+            <div class="footer-links">
+                <a href="home.html">Home</a>
+                <a href="forecast.html">Forecast</a>
+                <a href="tips.html">Tips</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="social-buttons">
+                <button type="button" aria-label="Facebook" id="facebook"><i class="fa-brands fa-facebook"></i></button>
+                <button type="button" aria-label="Twitter" id="twitter"><i class="fa-brands fa-x-twitter"></i></button>
+                <button type="button" aria-label="Instagram" id="instagram"><i class="fa-brands fa-instagram"></i></button>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Daily Forecast. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+</body>
+</html>
+
+https://t.me/kpugshipy667

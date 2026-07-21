@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      (function() {
+        if (localStorage.getItem("theme") === "dark") {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="Style/about.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-cloud-sun"></i>
+            <div class="logo-text">
+                <h2>Daily Forecast</h2>
+                <p>Your Daily Weather Companion</p>
+            </div>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="forecast.html">Forecast</a>
+            <a href="tips.html">Tips</a>
+            <a href="about.html" id="select">About</a>
+            <a href="#">Contact</a>
+            <button type="button" aria-label="Toggle theme" onclick="Toggle()"><i id="theme-icon" class="fa-solid fa-moon"></i></button>
+        </nav>
+    </header>
+    <div class="hero-section">
+        <h1>About Daily Forecast</h1>
+        <p>Daily Forecast is a weather website that provides you with accurate and up-to-date weather information. Our mission is to help you plan your day better with reliable forecasts.</p>
+    </div>
+    <div class="card-section">
+        <div class="card">
+            <i class="fa-solid fa-bullseye"></i>
+            <div class="f-text">
+                <h3>Our mission</h3>
+                <p>To deliver accurate weather updates and useful information for everyone.</p>
+            </div>
+        </div>
+        <div class="card">
+            <i class="fa-solid fa-code"></i>
+            <div class="s-text">
+                <h3>Technologies Used</h3>
+                <ul>
+                    <li>HTML5</li>
+                    <li>CSS3</li>
+                    <li>JavaScript</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <i class="fa-regular fa-heart"></i>
+            <div class="t-text">
+                <h3>Why Choose Us?</h3>
+                <p>Simple, Fast, Beautiful and Easy to use.</p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <i class="fa-solid fa-cloud"></i>
+                <h3>Daily Forecast</h3>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="forecast.html">Forecast</a>
+                <a href="tips.html">Tips</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="social-buttons">
+                <button type="button" aria-label="Facebook" id="facebook"><i class="fa-brands fa-facebook"></i></button>
+                <button type="button" aria-label="Twitter" id="twitter"><i class="fa-brands fa-x-twitter"></i></button>
+                <button type="button" aria-label="Instagram" id="instagram"><i class="fa-brands fa-instagram"></i></button>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Daily Forecast. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+</body>
+</html>

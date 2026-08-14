@@ -684,83 +684,6 @@ footer {
     }
 
     /* ==========================================
-       2. App Header & Brand Styling
-       ========================================== */
-    header {
-        flex-direction: row !important; /* Keep logo and dark mode button aligned horizontally */
-        justify-content: space-between !important;
-        align-items: center !important;
-        padding: 16px 20px !important;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    }
-
-    .logo {
-        gap: 8px !important;
-    }
-
-    .logo i {
-        font-size: 28px !important;
-    }
-
-    .logo-text h2 {
-        font-size: 18px !important;
-    }
-
-    .logo-text p {
-        display: none; /* Hide subtitle on mobile to save precious vertical space */
-    }
-
-    /* Transform navigation links into a clean, modern scrollable tab bar */
-    header nav {
-        display: grid !important;
-        grid-template-columns: repeat(4, 1fr);
-        text-align: center;
-        width: 100% !important;
-        overflow-x: auto;
-        white-space: nowrap;
-        gap: 16px !important;
-        margin-top: 12px !important;
-        padding: 4px 0 8px 0;
-        scrollbar-width: none; /* Hide scrollbars */
-    }
-    
-    header nav::-webkit-scrollbar {
-        display: none;
-    }
-
-    header nav a {
-        width: auto !important;
-        padding: 6px 16px !important;
-        background: rgba(255, 255, 255, 0.15);
-        border-radius: 20px;
-        border-bottom: none !important;
-        font-size: 14px !important;
-        font-weight: 500;
-    }
-
-    header nav a:nth-child(5){
-        grid-column: 1 / span 4;
-        justify-self: center;
-        width: 50%;
-    }
-
-    header nav a#select {
-        background: #2563eb !important;
-        color: white !important;
-        text-decoration: none !important;
-    }
-
-    header nav button {
-        margin-top: 0 !important;
-        position: absolute;
-        right: 20px;
-        top: 16px;
-    }
-
-    /* ==========================================
        3. Main Hero & Dynamic Content Wrapper
        ========================================== */
     .container {
@@ -1004,4 +927,34 @@ footer {
 
 @media (max-width: 600px) {
     .default-city-button { margin-bottom: 10px; padding: 7px 11px; }
+}
+
+/* Forecast page visual refresh — content and forecast values are unchanged. */
+main {
+    width: min(1100px, 90%);
+    margin: 0 auto;
+    padding: 28px 0 56px;
+}
+.search-container { padding: 12px 0 24px; }
+.search-result {
+    border: 1px solid rgba(255, 255, 255, .72);
+    border-radius: 22px;
+    box-shadow: 0 14px 32px rgba(15, 23, 42, .14);
+}
+.seven-day-detail,
+.hourly-detail {
+    border: 1px solid rgba(226, 232, 240, .9);
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, .08);
+}
+.seven-day-detail:hover,
+.hourly-detail:hover { transform: translateY(-4px); }
+.dark .search-result,
+.dark .seven-day-detail,
+.dark .hourly-detail { border-color: #475569; }
+
+@media (max-width: 768px) {
+    main { width: 100%; padding: 18px 16px 40px; }
+    .search-container { padding-top: 4px; }
+    .search-result { border-radius: 18px; }
 }

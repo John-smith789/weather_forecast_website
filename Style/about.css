@@ -118,132 +118,53 @@ footer {
 .social-buttons #instagram { background: linear-gradient(45deg,#f58529,#dd2a7b 55%,#515bd4); }
 .footer-bottom { padding-top: 20px; text-align: center; color: rgba(255,255,255,.78); font-size: 13px; }
 
-/* Tablet and Android phone layout */
-@media (max-width: 760px) {
-    header { padding: 20px 6%; justify-content: center; text-align: left; }
-    header nav { justify-content: center; gap: 13px 18px; }
-    .hero-section { width: 88%; margin-top: 18px; padding: 32px 24px; border-radius: 20px; }
-    .hero-section p { font-size: .98rem; }
-    .card-section { width: 88%; grid-template-columns: 1fr; margin: 22px auto 44px; gap: 16px; }
-    .card { min-height: 0; padding: 24px; }
-    .footer-content { justify-content: center; text-align: center; }
-    .footer-brand, .footer-links, .social-buttons { justify-content: center; }
-}
-
-@media (max-width: 390px) {
-    .logo > i { font-size: 31px; }
-    .logo-text h2 { font-size: 21px; }
-    header nav { gap: 11px 14px; font-size: 14px; }
-    header nav a { font-size: 14px; }
-    .hero-section { width: 92%; padding: 28px 18px; }
-    .card-section { width: 92%; }
-    .footer-links { gap: 12px; }
-}
-
-/* Android app-style layout.  These selectors intentionally match the shared
-   chrome stylesheet, which is loaded after this page stylesheet. */
-@media (max-width: 760px) {
+/* Android layout: uses the same app-style header and footer as the other pages. */
+@media (max-width: 768px) {
     body {
-        min-width: 0;
-        overflow-x: hidden;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f1f5f9;
     }
 
-    body > header {
-        width: 100% !important;
-        padding: 16px 20px !important;
-        display: flex !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        gap: 10px !important;
-        text-align: left !important;
+    .dark body {
+        background-color: #0b0f19;
     }
 
-    header .logo { gap: 8px; min-width: 0; }
-    header .logo > i { font-size: 28px; }
-    header .logo-text h2 { font-size: 18px; line-height: 1.2; }
-    header .logo-text p { display: none; }
-
-    body > header nav {
-        position: relative;
-        width: 100% !important;
-        display: grid !important;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        justify-content: stretch !important;
-        gap: 8px !important;
-        margin-top: 6px;
-        padding: 4px 0 2px;
-    }
-
-    body > header nav a {
-        min-width: 0;
-        padding: 8px 4px !important;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, .14);
-        color: #fff;
-        font-size: 13px !important;
-        font-weight: 600;
-        line-height: 1.2;
-        text-align: center;
-        text-decoration: none !important;
-    }
-
-    body > header nav a#select {
-        background: #fff !important;
-        color: #07528f !important;
-        box-shadow: 0 3px 10px rgba(0, 38, 70, .18);
-    }
-
-    body > header nav a:last-of-type {
-        grid-column: 2 / span 2;
-    }
-
-    body > header nav button {
-        position: absolute;
-        top: -43px;
-        right: 0;
-        width: 34px;
-        height: 34px;
-    }
-
+    /* Keep the same centered, readable hero composition as desktop. */
     .hero-section {
         width: calc(100% - 32px);
-        margin: 14px auto 0;
-        padding: 28px 20px;
+        margin-top: 16px;
+        padding: 30px 22px;
         border-radius: 20px;
     }
+    .hero-section h1 { font-size: clamp(1.85rem, 8vw, 2.4rem); line-height: 1.18; }
+    .hero-section p { margin-top: 14px; font-size: .98rem; line-height: 1.65; }
 
-    .hero-section h1 { font-size: clamp(1.8rem, 8vw, 2.35rem); line-height: 1.15; }
-    .hero-section p { margin-top: 12px; font-size: .95rem; line-height: 1.6; }
-
+    /* Cards are full-width and stacked vertically, one card per row. */
     .card-section {
         width: calc(100% - 32px);
-        margin: 18px auto 36px;
-        gap: 14px;
+        grid-template-columns: 1fr;
+        margin: 20px auto 40px;
+        gap: 16px;
     }
-
     .card {
         min-height: 0;
-        padding: 20px;
-        flex-direction: row;
+        padding: 24px;
+        flex-direction: column;
         align-items: flex-start;
         gap: 16px;
         border-radius: 18px;
     }
+    .card > i { width: 50px; height: 50px; font-size: 22px; }
+    .card h3 { margin-bottom: 6px; }
 
-    .card > i { width: 46px; height: 46px; flex: 0 0 46px; border-radius: 13px; font-size: 21px; }
-    .card h3 { margin: 1px 0 6px; font-size: 1.08rem; }
-    .card p, .card li { font-size: .94rem; line-height: 1.55; }
-    .card ul { padding-left: 18px; }
-
-    footer { padding: 30px 16px 22px !important; }
-    .footer-content { flex-direction: column; gap: 18px; padding-bottom: 20px; }
+    footer { padding: 32px 16px 24px !important; }
+    .footer-content {
+        flex-direction: column;
+        justify-content: center;
+        gap: 20px;
+        padding-bottom: 20px;
+        text-align: center;
+    }
+    .footer-brand, .footer-links, .social-buttons { justify-content: center; }
     .footer-links { gap: 10px 16px; }
-}
-
-@media (max-width: 360px) {
-    body > header { padding-inline: 14px !important; }
-    body > header nav { gap: 6px !important; }
-    body > header nav a { font-size: 12px !important; }
-    .hero-section, .card-section { width: calc(100% - 24px); }
-    .card { padding: 18px 16px; gap: 13px; }
 }

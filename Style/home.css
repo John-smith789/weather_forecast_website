@@ -297,6 +297,7 @@ header nav button:active {
 
 /* Weather Card */
 .weather-card {
+    position: relative;
     width: 100%;
     max-width: 400px;
     background: rgba(255, 255, 255, 0.15);
@@ -970,4 +971,41 @@ footer {
         justify-content: center;
         gap: 16px !important;
     }
+}
+
+/* Forecast action in the home weather card */
+#forecast-link {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    min-width: 52px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid rgba(255,255,255,.52);
+    border-radius: 999px;
+    color: #fff;
+    background: rgba(255,255,255,.16);
+    box-shadow: 0 5px 14px rgba(15,23,42,.16);
+    font-size: 11px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
+#forecast-link:hover {
+    color: #0f3f74;
+    background: #fff;
+    box-shadow: 0 8px 18px rgba(15,23,42,.24);
+    transform: translateY(-2px);
+}
+#forecast-link i { font-size: 10px; transition: transform .2s ease; }
+#forecast-link:hover i { transform: translateX(3px); }
+
+@media (max-width: 600px) {
+    #forecast-link { top: 12px; right: 12px; min-width: 48px; height: 30px; }
 }

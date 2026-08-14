@@ -972,3 +972,36 @@ footer {
         gap: 16px !important;
     }
 }
+
+/* Save the currently searched city as the default city */
+.default-city-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 14px;
+    padding: 8px 13px;
+    border: 1px solid #bfdbfe;
+    border-radius: 999px;
+    color: #1d4ed8;
+    background: #eff6ff;
+    box-shadow: 0 4px 10px rgba(37,99,235,.1);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
+.default-city-button:hover {
+    color: #fff;
+    background: #2563eb;
+    box-shadow: 0 7px 14px rgba(37,99,235,.25);
+    transform: translateY(-2px);
+}
+.default-city-button:active { transform: translateY(0); }
+.default-city-button i { color: #f59e0b; }
+.default-city-button:hover i { color: #fef3c7; }
+.dark .default-city-button { border-color: #475569; color: #dbeafe; background: #334155; }
+.dark .default-city-button:hover { background: #2563eb; }
+
+@media (max-width: 600px) {
+    .default-city-button { margin-bottom: 10px; padding: 7px 11px; }
+}

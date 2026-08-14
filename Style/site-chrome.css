@@ -1,0 +1,58 @@
+/* Shared navigation and footer styling for every Daily Forecast page. */
+header {
+    width: min(1200px, 100%);
+    margin: 0 auto;
+    padding: 25px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    line-height: 1.6;
+}
+
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo > i { color: #fff; font-size: 36px; }
+.logo-text h2 { color: #fff; font-size: 24px; }
+.logo-text p { margin-top: 2px; color: rgba(255,255,255,.82); font-size: 13px; }
+
+header nav { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 20px; }
+header nav a { color: #fff; font-size: 16px; text-decoration: none; transition: color .2s ease; }
+header nav a:hover, header nav a#select { color: #dbeafe; text-decoration: underline; text-underline-offset: 8px; }
+header nav button {
+    width: 34px; height: 34px; border: 0; border-radius: 50%; cursor: pointer;
+    color: #1e293b; background: #f8fafc; font-size: 16px; transition: transform .2s ease, background .2s ease;
+}
+header nav button:hover { transform: translateY(-2px); background: #dbeafe; }
+.dark header nav button { color: #fff; background: #334155; }
+
+footer { width: 100%; margin-top: auto; padding: 38px 5% 20px; color: #fff; background: rgba(0,48,88,.92); }
+.dark footer { background: #0f172a; }
+.footer-content {
+    width: min(1200px, 100%); margin: auto; padding-bottom: 24px;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+    border-bottom: 1px solid rgba(255,255,255,.2);
+}
+.footer-brand { display: flex; align-items: center; gap: 12px; }
+.footer-brand > i { font-size: 24px; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 18px; }
+.footer-links a { color: #fff; font-size: 14px; text-decoration: none; }
+.footer-links a:hover { text-decoration: underline; }
+.social-buttons { display: flex; gap: 10px; }
+.social-buttons button { width: 36px; height: 36px; border: 0; border-radius: 50%; color: #fff; cursor: pointer; font-size: 16px; }
+.footer-bottom { padding-top: 20px; text-align: center; color: rgba(255,255,255,.78); font-size: 13px; }
+
+@media (max-width: 760px) {
+    header { padding: 20px 6%; justify-content: center; text-align: left; }
+    header nav { justify-content: center; gap: 13px 18px; }
+    footer { padding: 32px 6% 24px; }
+    .footer-content { justify-content: center; text-align: center; }
+    .footer-brand, .footer-links, .social-buttons { justify-content: center; }
+}
+
+@media (max-width: 390px) {
+    .logo > i { font-size: 31px; }
+    .logo-text h2 { font-size: 21px; }
+    header nav { gap: 11px 14px; }
+    header nav a { font-size: 14px; }
+    .footer-links { gap: 12px; }
+}

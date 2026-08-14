@@ -139,3 +139,111 @@ footer {
     .card-section { width: 92%; }
     .footer-links { gap: 12px; }
 }
+
+/* Android app-style layout.  These selectors intentionally match the shared
+   chrome stylesheet, which is loaded after this page stylesheet. */
+@media (max-width: 760px) {
+    body {
+        min-width: 0;
+        overflow-x: hidden;
+    }
+
+    body > header {
+        width: 100% !important;
+        padding: 16px 20px !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 10px !important;
+        text-align: left !important;
+    }
+
+    header .logo { gap: 8px; min-width: 0; }
+    header .logo > i { font-size: 28px; }
+    header .logo-text h2 { font-size: 18px; line-height: 1.2; }
+    header .logo-text p { display: none; }
+
+    body > header nav {
+        position: relative;
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        justify-content: stretch !important;
+        gap: 8px !important;
+        margin-top: 6px;
+        padding: 4px 0 2px;
+    }
+
+    body > header nav a {
+        min-width: 0;
+        padding: 8px 4px !important;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, .14);
+        color: #fff;
+        font-size: 13px !important;
+        font-weight: 600;
+        line-height: 1.2;
+        text-align: center;
+        text-decoration: none !important;
+    }
+
+    body > header nav a#select {
+        background: #fff !important;
+        color: #07528f !important;
+        box-shadow: 0 3px 10px rgba(0, 38, 70, .18);
+    }
+
+    body > header nav a:last-of-type {
+        grid-column: 2 / span 2;
+    }
+
+    body > header nav button {
+        position: absolute;
+        top: -43px;
+        right: 0;
+        width: 34px;
+        height: 34px;
+    }
+
+    .hero-section {
+        width: calc(100% - 32px);
+        margin: 14px auto 0;
+        padding: 28px 20px;
+        border-radius: 20px;
+    }
+
+    .hero-section h1 { font-size: clamp(1.8rem, 8vw, 2.35rem); line-height: 1.15; }
+    .hero-section p { margin-top: 12px; font-size: .95rem; line-height: 1.6; }
+
+    .card-section {
+        width: calc(100% - 32px);
+        margin: 18px auto 36px;
+        gap: 14px;
+    }
+
+    .card {
+        min-height: 0;
+        padding: 20px;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 16px;
+        border-radius: 18px;
+    }
+
+    .card > i { width: 46px; height: 46px; flex: 0 0 46px; border-radius: 13px; font-size: 21px; }
+    .card h3 { margin: 1px 0 6px; font-size: 1.08rem; }
+    .card p, .card li { font-size: .94rem; line-height: 1.55; }
+    .card ul { padding-left: 18px; }
+
+    footer { padding: 30px 16px 22px !important; }
+    .footer-content { flex-direction: column; gap: 18px; padding-bottom: 20px; }
+    .footer-links { gap: 10px 16px; }
+}
+
+@media (max-width: 360px) {
+    body > header { padding-inline: 14px !important; }
+    body > header nav { gap: 6px !important; }
+    body > header nav a { font-size: 12px !important; }
+    .hero-section, .card-section { width: calc(100% - 24px); }
+    .card { padding: 18px 16px; gap: 13px; }
+}

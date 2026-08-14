@@ -127,10 +127,15 @@ header nav a {
     transition: color 0.3s;
 }
 
-header nav a:hover,
-header nav a#select {
+header nav a:hover {
     text-decoration: underline;
-    color: rgb(3, 141, 253);
+    color: rgb(255, 255, 255);
+    text-underline-offset: 8px;
+    transition: background 0.1s;
+}
+header nav a#select{
+    text-decoration: underline;
+    color: rgba(255, 255, 255, 0.678);
     text-underline-offset: 8px;
     transition: background 0.1s;
 }

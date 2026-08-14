@@ -153,11 +153,18 @@ header nav a {
     transition: color 0.3s;
 }
 
-header nav a:hover,
-header nav a#select {
+header nav a:hover {
     text-decoration: underline;
-    color: rgb(3, 141, 253);
+    color: rgb(255, 255, 255);
     text-underline-offset: 8px;
+    transition: background 0.1s;
+}
+
+header nav a#select{
+    text-decoration: underline;
+    color: rgba(255, 255, 255, 0.678);
+    text-underline-offset: 8px;
+    transition: background 0.1s;
 }
 
 header nav button {
@@ -231,6 +238,38 @@ main {
     outline: none;
 }
 
+.dropdown {
+    position: absolute;
+    top: 45px;
+    width: 100%;
+    border-top: none;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
+}
+
+.dropdown div {
+    padding: 10px;
+    cursor: pointer;
+    padding-bottom: 5px;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 21px;
+}
+.dark .dropdown div {
+    background-color: #1e293b;
+    color: rgb(255, 255, 255);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.dropdown div:hover {
+    background: #eeeeee;
+}
+.dark .dropdown div:hover {
+    background: #111111;
+}
 .search-box button {
     position: absolute;
     right: 6px;
@@ -577,14 +616,15 @@ footer {
     );
 }
 
-/* End */
-
 .footer-bottom {
     text-align: center;
     padding-top: 20px;
     font-size: 13px;
     color: rgba(255, 255, 255, 0.8);
 }
+/* End */
+
+
 
 
 /* Autocomplete Dropdown Styles */

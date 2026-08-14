@@ -5,16 +5,16 @@
 }
 
 body {
+    background: linear-gradient(to bottom, #004b87, #5486f3, #6eaefc);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
-    color: #000000;
+    color: #1e293b;
 }
 
-
 .dark body{
-    background: black;
+    background: linear-gradient(to bottom, #0f172a, #1e293b, #334155);
     color: #f8fafc;
 }
 /*
@@ -29,6 +29,7 @@ header {
     padding: 25px 5%;
     flex-wrap: wrap;
     gap: 20px;
+    padding: 25px 66.7px 0 66.7px;
     line-height: 1.6;
 }
 
@@ -41,16 +42,16 @@ header {
 
 .logo i {
     font-size: 36px;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
 }
 
 .logo-text h2 {
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     font-size: 24px;
 }
 
 .logo-text p {
-    color: rgba(0, 0, 0, 0.8);
+    color: rgba(255, 255, 255, 0.8);
     font-size: 13px;
 }
 
@@ -64,15 +65,21 @@ header nav {
 
 header nav a {
     text-decoration: none;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     transition: color 0.3s;
 }
 
-header nav a:hover,
-header nav a#select {
+header nav a:hover {
     text-decoration: underline;
-    color: rgb(3, 141, 253);
+    color: rgb(255, 255, 255);
     text-underline-offset: 8px;
+    transition: background 0.1s;
+}
+header nav a#select{
+    text-decoration: underline;
+    color: rgba(255, 255, 255, 0.678);
+    text-underline-offset: 8px;
+    transition: background 0.1s;
 }
 
 header nav button {
@@ -97,27 +104,7 @@ header nav button:active {
 }
 
 /* Dark Mode Overrides */
-.dark header .logo i{
-    color: white;
-}
-
-.dark .logo-text h2 {
-    color: rgb(255, 255, 255);
-}
-
-.dark .logo-text p {
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.dark header nav a {
-    color: #f1f5f9;
-}
-
-.dark header nav a:hover,
-.dark header nav a#select {
-    color: #38bdf8;
-}
-
+/* Dark Mode Overrides */
 .dark header nav button {
     background-color: #374151; /* Dark Normal */
     color: #ffffff;            /* White icon for dark mode */
@@ -141,6 +128,7 @@ header nav button:active {
 .hero-section{
     padding: 2rem 0 0 150px;
     width: 40%;
+    color: white;
 }
 
 .hero-section h1{
@@ -159,14 +147,20 @@ header nav button:active {
 }
 
 .card{
-    display: flex;
-    flex-direction: row;
-    background-color: rgba(255, 255, 255, 1);
-    box-shadow: 1px 2px 15px rgba(0, 0, 0, 0.2);
-    padding: 25px;
+    background: #FFFFFF;
     border-radius: 20px;
-    width: 100%;
-    height: 150px;
+    padding: 32px 28px;
+    box-shadow: 0 4px 12px rgba(30, 41, 59, 0.04);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
 }
 
 .card i{
@@ -209,8 +203,9 @@ header nav button:active {
 /* Dark Color */
 
 .dark .card{
-    background-color: rgba(0, 0, 0, 1);
-    box-shadow: 1px 2px 15px rgba(255, 255, 255, 0.2);
+    background: #1e293b;
+    border-color: #334155;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 /* 
 =====================================================

@@ -1,339 +1,251 @@
-// Open-Meteo API Helper Functions
+const cities = [
+    "Yangon", "Mandalay", "Naypyidaw", "Bagan", "Magway", "Mawlamyine",
+    "Pathein", "Bago", "Pyay", "Taungoo", "Monywa", "Sagaing", "Kalay",
+    "Myitkyina", "Putao", "Taunggyi", "Lashio", "Tachileik", "Loikaw",
+    "Hakha", "Falam", "Sittwe", "Thandwe", "Dawei", "Myeik", "Kawthaung",
+    "Hpa-An", "Myawaddy", "Kyaikto", "Pyin Oo Lwin", "Meiktila", "Pakokku"
+];
 
-// Map WMO Weather Codes to FontAwesome icons and descriptions
-function getWeatherInfo(code) {
-    const weatherMap = {
-        0: { desc: "Clear sky", icon: "fa-sun" },
-        1: { desc: "Mainly clear", icon: "fa-cloud-sun" },
-        2: { desc: "Partly cloudy", icon: "fa-cloud-sun" },
-        3: { desc: "Overcast", icon: "fa-cloud" },
-        45: { desc: "Foggy", icon: "fa-smog" },
-        48: { desc: "Rime fog", icon: "fa-smog" },
-        51: { desc: "Light drizzle", icon: "fa-cloud-rain" },
-        53: { desc: "Moderate drizzle", icon: "fa-cloud-rain" },
-        55: { desc: "Dense drizzle", icon: "fa-cloud-showers-heavy" },
-        61: { desc: "Slight rain", icon: "fa-cloud-rain" },
-        63: { desc: "Moderate rain", icon: "fa-cloud-rain" },
-        65: { desc: "Heavy rain", icon: "fa-cloud-showers-heavy" },
-        80: { desc: "Slight rain showers", icon: "fa-cloud-sun-rain" },
-        81: { desc: "Moderate rain showers", icon: "fa-cloud-showers-heavy" },
-        82: { desc: "Violent rain showers", icon: "fa-cloud-showers-water" },
-        95: { desc: "Thunderstorm", icon: "fa-bolt" },
-        96: { desc: "Thunderstorm with hail", icon: "fa-bolt" }
-    };
-    return weatherMap[code] || { desc: "Unknown", icon: "fa-cloud" };
+const DEFAULT_CITY = { name: "Yangon", latitude: 16.8409, longitude: 96.1735 };
+const SELECTED_CITY_KEY = "selectedWeatherCity";
+const DEFAULT_CITY_KEY = "defaultWeatherCity";
+const input = document.getElementById("cityInput");
+const dropdown = document.getElementById("dropdown");
+const searchBtn = document.getElementById("search");
+const defaultBtn = document.getElementById("default");
+
+function weatherIcon(code) {
+    if ([0, 1].includes(code)) return "fa-sun";
+    if ([2, 3, 45, 48].includes(code)) return "fa-cloud";
+    if ([51, 53, 55, 56, 57, 61, 63, 65, 80, 81, 82].includes(code)) return "fa-cloud-rain";
+    if ([71, 73, 75, 77, 85, 86].includes(code)) return "fa-snowflake";
+    return "fa-cloud-bolt";
 }
 
-// Format Date / Day
-function formatDate(dateStr) {
-    const date = new Date(dateStr);
-    const dayName = date.toLocaleDateString("en-US", { weekday: "short" });
-    const monthDay = date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
-    return { dayName, monthDay };
+function getSavedCity() {
+    try {
+        return JSON.parse(localStorage.getItem(SELECTED_CITY_KEY));
+    } catch {
+        return null;
+    }
 }
 
-// -------------------------------------------------------------
-// 1. Myanmar City Autocomplete & Search Engine
-// -------------------------------------------------------------
-function setupSearchEngine(onSelectCallback) {
-    const searchInput = document.getElementById("search");
-    if (!searchInput) return;
-
-    const searchBox = searchInput.parentElement;
-    const searchBtn = searchBox.querySelector("button");
-    
-    // Create dynamic dropdown container
-    let dropdown = document.createElement("ul");
-    dropdown.className = "search-dropdown";
-    dropdown.style.display = "none";
-    searchBox.appendChild(dropdown);
-
-    let debounceTimer;
-
-    // Search helper with sanitized query input
-    async function searchMyanmarCities(query) {
-        // Strip out regions or state names after commas (e.g. "Yangon, Yangon" -> "Yangon")
-        const cleanQuery = query.split(',')[0].trim();
-        if (!cleanQuery) return [];
-
-        try {
-            const res = await fetch(
-                `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(cleanQuery)}&count=10&language=en&format=json`
-            );
-            const data = await res.json();
-            // Filter explicitly for Myanmar locations (country_code: "MM")
-            return (data.results || []).filter((item) => item.country_code === "MM");
-        } catch (err) {
-            console.error("Geocoding fetch error:", err);
-            return [];
-        }
-    }
-
-    // A. Live Autocomplete on Typing
-    searchInput.addEventListener("input", (e) => {
-        const query = e.target.value.trim();
-        clearTimeout(debounceTimer);
-
-        if (query.length === 0) {
-            dropdown.innerHTML = "";
-            dropdown.style.display = "none";
-            return;
-        }
-
-        debounceTimer = setTimeout(async () => {
-            const myanmarCities = await searchMyanmarCities(query);
-            dropdown.innerHTML = "";
-
-            if (myanmarCities.length === 0) {
-                const li = document.createElement("li");
-                li.textContent = "No Myanmar location found";
-                dropdown.appendChild(li);
-            } else {
-                myanmarCities.forEach((city) => {
-                    const li = document.createElement("li");
-                    const region = city.admin1 ? `, ${city.admin1}` : "";
-                    li.innerHTML = `<strong>${city.name}</strong><span class="admin-region">${region}</span>`;
-                    
-                    li.addEventListener("click", () => {
-                        searchInput.value = `${city.name}${region}`;
-                        dropdown.style.display = "none";
-                        dropdown.innerHTML = "";
-                        // Trigger weather render directly with selected city object
-                        onSelectCallback(city);
-                    });
-                    dropdown.appendChild(li);
-                });
-            }
-            dropdown.style.display = "block";
-        }, 300);
-    });
-
-    // B. Direct Search Execution (Triggers on Search Button Click or Enter Key)
-    async function executeDirectSearch() {
-        const rawQuery = searchInput.value.trim();
-        if (!rawQuery) return;
-
-        dropdown.style.display = "none";
-        const cities = await searchMyanmarCities(rawQuery);
-
-        if (cities.length > 0) {
-            const topMatch = cities[0];
-            const region = topMatch.admin1 ? `, ${topMatch.admin1}` : "";
-            searchInput.value = `${topMatch.name}${region}`;
-            onSelectCallback(topMatch);
-        } else {
-            alert("No Myanmar location found matching: " + rawQuery);
-        }
-    }
-
-    // Trigger on Search Button Click
-    if (searchBtn) {
-        searchBtn.addEventListener("click", (e) => {
-            e.preventDefault();
-            executeDirectSearch();
-        });
-    }
-
-    // Trigger on Pressing Enter
-    searchInput.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
-            e.preventDefault();
-            executeDirectSearch();
-        }
-    });
-
-    // Close dropdown on click outside
-    document.addEventListener("click", (e) => {
-        if (!searchBox.contains(e.target)) {
-            dropdown.style.display = "none";
-        }
-    });
+function saveCity(city) {
+    localStorage.setItem(SELECTED_CITY_KEY, JSON.stringify(city));
 }
 
-// -------------------------------------------------------------
-// 2. Open-Meteo Weather Data Fetcher (Asia/Yangon Timezone)
-// -------------------------------------------------------------
-async function fetchWeatherData(lat, lon) {
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,surface_pressure,wind_speed_10m&hourly=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Asia%2FYangon`;
+function getDefaultCity() {
+    try {
+        return JSON.parse(localStorage.getItem(DEFAULT_CITY_KEY));
+    } catch {
+        return null;
+    }
+}
+
+async function findCity(name) {
+    const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(name)}&count=1&language=en&format=json`;
     const response = await fetch(url);
-    if (!response.ok) throw new Error("Failed to fetch weather data");
-    return await response.json();
+    if (!response.ok) throw new Error("City search failed");
+    const location = (await response.json()).results?.[0];
+    if (!location) throw new Error("City not found");
+    return { name: location.name, latitude: location.latitude, longitude: location.longitude };
 }
 
-// -------------------------------------------------------------
-// 3. Update Home Page (`home.html`)
-// -------------------------------------------------------------
-async function updateHomePage(city) {
+async function getWeather(city) {
+    const params = new URLSearchParams({
+        latitude: city.latitude,
+        longitude: city.longitude,
+        current: "temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,pressure_msl",
+        hourly: "temperature_2m,weather_code",
+        daily: "weather_code,temperature_2m_max,temperature_2m_min",
+        timezone: "Asia/Yangon",
+        forecast_days: "7"
+    });
+    const response = await fetch(`https://api.open-meteo.com/v1/forecast?${params}`);
+    if (!response.ok) throw new Error("Weather request failed");
+    return response.json();
+}
+
+function setText(id, value) {
+    const element = document.getElementById(id);
+    if (element) element.textContent = value;
+}
+
+function weatherDescription(code) {
+    if (code === 0) return "Clear sky";
+    if ([1, 2, 3].includes(code)) return "Partly cloudy";
+    if ([45, 48].includes(code)) return "Foggy";
+    if ([51, 53, 55, 56, 57].includes(code)) return "Drizzle";
+    if ([61, 63, 65, 80, 81, 82].includes(code)) return "Rainy";
+    if ([71, 73, 75, 77, 85, 86].includes(code)) return "Snowy";
+    return "Thunderstorm";
+}
+
+function formatMyanmarHour(time) {
+    // Open-Meteo returns this timestamp already in Asia/Yangon because of the timezone parameter.
+    const hour = Number(time.slice(11, 13));
+    const period = hour >= 12 ? "PM" : "AM";
+    return `${hour % 12 || 12} ${period}`;
+}
+
+function renderCurrent(city, weather) {
+    const current = weather.current;
+    setText("temp", `${Math.round(current.temperature_2m)} °C`);
+    setText("city-name", `${city.name}, Myanmar`);
+    setText("humidity", `${current.relative_humidity_2m}%`);
+    setText("wind-speed", `${Math.round(current.wind_speed_10m)} km/h`);
+    setText("feels-like", `${Math.round(current.apparent_temperature)} °C`);
+    setText("pressure", `${Math.round(current.pressure_msl)} hPa`);
+
+    const condition = document.getElementById("condition") || document.querySelector(".search-detail p");
+    if (condition) condition.textContent = weatherDescription(current.weather_code);
+
+    const icon = document.querySelector(".weather-icon, .search-result > i");
+    if (icon) {
+        const extraClass = icon.classList.contains("weather-icon") ? " weather-icon" : "";
+        icon.className = `fa-solid ${weatherIcon(current.weather_code)}${extraClass}`;
+    }
+
+    const image = document.getElementById("image");
+    if (image) {
+        image.src = `Style/images/${city.name.toLowerCase()}.png`;
+        image.alt = city.name;
+    }
+}
+
+function renderForecast(weather) {
+    const dailyContainer = document.querySelector(".seven-day-forecast");
+    if (dailyContainer && weather.daily) {
+        dailyContainer.innerHTML = weather.daily.time.map((date, index) => {
+            // Noon UTC prevents the displayed Myanmar date from shifting on browsers in other timezones.
+            const localDate = new Date(`${date}T12:00:00Z`);
+            const dateOptions = { timeZone: "Asia/Yangon" };
+            const day = localDate.toLocaleDateString(undefined, { weekday: "short", ...dateOptions });
+            const displayDate = localDate.toLocaleDateString(undefined, { month: "short", day: "numeric", ...dateOptions });
+            return `<div class="seven-day-detail"><h3>${day}</h3><p>${displayDate}</p><i class="fa-solid ${weatherIcon(weather.daily.weather_code[index])}"></i><h2>${Math.round(weather.daily.temperature_2m_max[index])}°C</h2><p>${Math.round(weather.daily.temperature_2m_min[index])}°C</p></div>`;
+        }).join("");
+    }
+
+    const hourlyContainer = document.querySelector(".hourly-forecast");
+    if (hourlyContainer && weather.hourly) {
+        const nextHourIndex = weather.hourly.time.findIndex(time => time > weather.current.time);
+        const startIndex = nextHourIndex > 0 ? nextHourIndex - 1 : 0;
+        const hours = weather.hourly.time.slice(startIndex, startIndex + 8);
+
+        hourlyContainer.innerHTML = hours.map((time, index) => {
+            const weatherIndex = startIndex + index;
+            const label = index === 0 ? "Now" : formatMyanmarHour(time);
+            return `<div class="hourly-detail"><h3>${label}</h3><i class="fa-solid ${weatherIcon(weather.hourly.weather_code[weatherIndex])}"></i><h3>${Math.round(weather.hourly.temperature_2m[weatherIndex])}°C</h3></div>`;
+        }).join("");
+    }
+}
+
+async function displayCity(city, saveSelection = false) {
     try {
-        const weather = await fetchWeatherData(city.latitude, city.longitude);
-        const current = weather.current;
-        const weatherInfo = getWeatherInfo(current.weather_code);
-
-        const card = document.querySelector(".weather-card");
-        if (!card) return;
-
-        // Temperature & Condition
-        card.querySelector(".weather-card-detail h1").textContent = `${Math.round(current.temperature_2m)}°C`;
-        card.querySelector(".weather-card-detail p").textContent = weatherInfo.desc;
-        card.querySelector(".weather-card-detail p:last-child").innerHTML = `<i class="fa-solid fa-location-dot"></i> ${city.name}, Myanmar`;
-        
-        // Icon
-        const iconElem = card.querySelector(".weather-icon");
-        if (iconElem) {
-            iconElem.className = `fa-solid ${weatherInfo.icon} weather-icon`;
-        }
-
-        // Details Grid
-        const details = card.querySelectorAll(".weather-condition .detail h3");
-        if (details.length >= 3) {
-            details[0].textContent = `${current.relative_humidity_2m}%`;
-            details[1].textContent = `${Math.round(current.wind_speed_10m)} km/h`;
-            details[2].textContent = `${Math.round(current.apparent_temperature)}°C`;
-        }
-    } catch (err) {
-        console.error("Home page update error:", err);
+        const weather = await getWeather(city);
+        if (saveSelection) saveCity(city);
+        renderCurrent(city, weather);
+        renderForecast(weather);
+    } catch (error) {
+        console.error(error);
     }
 }
 
-// -------------------------------------------------------------
-// 4. Update Forecast Page (`forecast.html`)
-// -------------------------------------------------------------
-async function updateForecastPage(city) {
+async function updatePopularCities() {
+    const popularCities = [
+        { name: "Yangon", id: "popular-yangon" },
+        { name: "Mandalay", id: "popular-mandalay" },
+        { name: "Naypyidaw", id: "popular-naypyidaw" },
+        { name: "Pyin Oo Lwin", id: "popular-pyinoolwin" }
+    ];
+
+    await Promise.all(popularCities.map(async ({ name, id }) => {
+        try {
+            const city = await findCity(name);
+            const weather = await getWeather(city);
+            const card = document.getElementById(id);
+            if (!card) return;
+            card.querySelector(".city-detail p").textContent = weatherDescription(weather.current.weather_code);
+            card.querySelector(".city-detail h1").textContent = `${Math.round(weather.current.temperature_2m)} °C`;
+        } catch (error) {
+            // Keep placeholder values if a live request is temporarily unavailable.
+            console.error(`Could not update ${name}:`, error);
+        }
+    }));
+}
+
+async function searchCity() {
+    const name = input.value.trim();
+    if (!name) return;
     try {
-        const weather = await fetchWeatherData(city.latitude, city.longitude);
-        const current = weather.current;
-        const daily = weather.daily;
-        const hourly = weather.hourly;
-        const weatherInfo = getWeatherInfo(current.weather_code);
-
-        // A. Update Main Result Card
-        const searchResult = document.querySelector(".search-result");
-        if (searchResult) {
-            const detailH3s = searchResult.querySelectorAll(".search-detail h3");
-            if (detailH3s.length >= 2) {
-                detailH3s[1].textContent = `${city.name}, Myanmar`;
-            }
-            searchResult.querySelector(".search-detail h1").textContent = `${Math.round(current.temperature_2m)}°C`;
-            searchResult.querySelector(".search-detail p").textContent = weatherInfo.desc;
-
-            const mainIcon = searchResult.querySelector("> i");
-            if (mainIcon) {
-                mainIcon.className = `fa-solid ${weatherInfo.icon}`;
-            }
-
-            const metrics = searchResult.querySelectorAll(".metric-value");
-            if (metrics.length >= 4) {
-                metrics[0].textContent = `${current.relative_humidity_2m}%`;
-                metrics[1].textContent = `${Math.round(current.wind_speed_10m)} km/h`;
-                metrics[2].textContent = `${Math.round(current.surface_pressure)} hPa`;
-                metrics[3].textContent = `${Math.round(current.apparent_temperature)}°C`;
-            }
-        }
-
-        // B. Update 7-Day Forecast Grid
-        const sevenDayContainer = document.querySelector(".seven-day-forecast");
-        if (sevenDayContainer && daily) {
-            sevenDayContainer.innerHTML = "";
-            
-            for (let i = 0; i < daily.time.length; i++) {
-                const dayDate = formatDate(daily.time[i]);
-                const dayInfo = getWeatherInfo(daily.weather_code[i]);
-                const maxTemp = Math.round(daily.temperature_2m_max[i]);
-                const minTemp = Math.round(daily.temperature_2m_min[i]);
-
-                const cardHTML = `
-                    <div class="seven-day-detail">
-                        <h3>${i === 0 ? "Today" : dayDate.dayName}</h3>
-                        <p>${dayDate.monthDay}</p>
-                        <i class="fa-solid ${dayInfo.icon}"></i>
-                        <h2>${maxTemp}°C</h2>
-                        <p>${minTemp}°C</p>
-                    </div>
-                `;
-                sevenDayContainer.insertAdjacentHTML("beforeend", cardHTML);
-            }
-        }
-
-        // C. Update Hourly Forecast Grid
-        const hourlyContainer = document.querySelector(".hourly-forecast");
-        if (hourlyContainer && hourly) {
-            hourlyContainer.innerHTML = "";
-
-            const now = new Date();
-            let startIndex = 0;
-
-            for (let i = 0; i < hourly.time.length; i++) {
-                const itemTime = new Date(hourly.time[i]);
-                if (itemTime >= now) {
-                    startIndex = i;
-                    break;
-                }
-            }
-
-            for (let i = startIndex; i < startIndex + 8 && i < hourly.time.length; i++) {
-                const timeObj = new Date(hourly.time[i]);
-                const timeStr = (i === startIndex) 
-                    ? "Now" 
-                    : timeObj.toLocaleTimeString([], { hour: 'numeric', hour12: true });
-                
-                const hourInfo = getWeatherInfo(hourly.weather_code[i]);
-                const temp = Math.round(hourly.temperature_2m[i]);
-
-                const hourlyHTML = `
-                    <div class="hourly-detail">
-                        <h3>${timeStr}</h3>
-                        <i class="fa-solid ${hourInfo.icon}"></i>
-                        <h3>${temp}°C</h3>
-                    </div>
-                `;
-                hourlyContainer.insertAdjacentHTML("beforeend", hourlyHTML);
-            }
-        }
-
-    } catch (err) {
-        console.error("Forecast page update error:", err);
+        const city = await findCity(name);
+        input.value = city.name;
+        dropdown.style.display = "none";
+        await displayCity(city, true);
+    } catch (error) {
+        console.error(error);
+        alert("City not found. Please try another city.");
     }
 }
 
-// -------------------------------------------------------------
-// 5. Page Initialization
-// -------------------------------------------------------------
-document.addEventListener("DOMContentLoaded", () => {
-    // Default location: Yangon
-    const defaultCity = {
-        name: "Yangon",
-        latitude: 16.8053,
-        longitude: 96.1557
-    };
-
-    if (document.querySelector(".weather-card")) {
-        setupSearchEngine((selectedCity) => updateHomePage(selectedCity));
-        updateHomePage(defaultCity);
-    } else if (document.querySelector(".seven-day-forecast")) {
-        setupSearchEngine((selectedCity) => updateForecastPage(selectedCity));
-        updateForecastPage(defaultCity);
+input.addEventListener("input", () => {
+    const text = input.value.trim().toLowerCase();
+    dropdown.innerHTML = "";
+    if (!text) {
+        dropdown.style.display = "none";
+        return;
     }
+
+    cities.filter(city => city.toLowerCase().startsWith(text)).forEach(city => {
+        const option = document.createElement("div");
+        option.textContent = city;
+        option.addEventListener("click", () => {
+            input.value = city;
+            dropdown.style.display = "none";
+        });
+        dropdown.appendChild(option);
+    });
+    dropdown.style.display = dropdown.children.length ? "block" : "none";
 });
 
+searchBtn.addEventListener("click", searchCity);
+input.addEventListener("keydown", event => {
+    if (event.key === "Enter") searchCity();
+});
 
-// Toggle Function for Light / Dark Mode
+if (defaultBtn) {
+    defaultBtn.addEventListener("click", async () => {
+        const cityName = input.value.trim();
+        if (!cityName) return;
+
+        try {
+            // Save the city in the input as the website's default city.
+            const city = await findCity(cityName);
+            localStorage.setItem(DEFAULT_CITY_KEY, JSON.stringify(city));
+            saveCity(city);
+            input.value = city.name;
+            await displayCity(city);
+        } catch (error) {
+            console.error(error);
+            alert("Search for a valid city before setting it as the default.");
+        }
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Yangon is used until the visitor chooses a different default city.
+    displayCity(getDefaultCity() || getSavedCity() || DEFAULT_CITY);
+    if (document.querySelector(".popular-city")) updatePopularCities();
+});
+
 function Toggle() {
     const isDark = document.documentElement.classList.toggle("dark");
     const icon = document.getElementById("theme-icon");
-
-    if (isDark) {
-        localStorage.setItem("theme", "dark");
-        if (icon) icon.classList.replace("fa-moon", "fa-sun");
-    } else {
-        localStorage.setItem("theme", "light");
-        if (icon) icon.classList.replace("fa-sun", "fa-moon");
-    }
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+    if (icon) icon.className = `fa-solid ${isDark ? "fa-sun" : "fa-moon"}`;
 }
 
-// Sync the icon state once the document finishes loading
 document.addEventListener("DOMContentLoaded", () => {
     const icon = document.getElementById("theme-icon");
-    if (icon && localStorage.getItem("theme") === "dark") {
-        icon.classList.replace("fa-moon", "fa-sun");
-    }
+    if (icon && localStorage.getItem("theme") === "dark") icon.className = "fa-solid fa-sun";
 });

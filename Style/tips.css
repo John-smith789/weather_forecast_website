@@ -1,6 +1,7 @@
 /* ==========================================================================
    1. Design System & Tokens (Extracted directly from UI specification)
    ========================================================================== */
+/* === Tokens: START === */
 :root {
   --color-primary: #3B82F6;
   --color-secondary: #60A5FA;
@@ -24,6 +25,8 @@
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* === Tokens: END === */
+
 /* Base Reset */
 * {
   box-sizing: border-box;
@@ -46,10 +49,10 @@ body {
   position: relative;
 }
 
+/* === Base Reset & Body: END === */
 
-/* ==========================================================================
-   Full Color Dark Mode Overrides
-   ========================================================================== */
+
+/* === Dark Mode Overrides: START === */
 .dark body{
     background: linear-gradient(to bottom, #0f172a, #1e293b, #334155);
 }
@@ -71,6 +74,8 @@ body {
 .dark footer {
     background-color: #0f172a;
 }
+
+/* === Dark Mode Overrides: END === */
 
 /* Tips page visual refresh — all supplied tips and icons remain unchanged. */
 .hero { padding: 48px 0 36px; }
@@ -194,9 +199,10 @@ header nav button:active {
     color: #ffffff;
 }
 
+/* === Hero: START === */
 /* ==========================================================================
-   3. Hero Section
-   ========================================================================== */
+    3. Hero Section
+    ========================================================================== */
 .hero {
   position: relative;
   z-index: 1;
@@ -218,9 +224,12 @@ header nav button:active {
   font-weight: 400;
 }
 
+/* === Hero: END === */
+
+/* === Tips Cards: START === */
 /* ==========================================================================
-   4. Tips Cards 2x2 Grid Layout
-   ========================================================================== */
+    4. Tips Cards 2x2 Grid Layout
+    ========================================================================== */
 main {
   position: relative;
   z-index: 1;
@@ -315,191 +324,12 @@ main {
   font-size: 0.85rem;
 }
 
+/* === Tips Cards: END === */
+
+/* === Responsive: START === */
 /* ==========================================================================
-   5. Footer Section
-   ========================================================================== */
-footer {
-    background-color: #004b87;
-    color: white;
-    padding: 40px 5% 20px 5%;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding-bottom: 25px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.footer-brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.footer-links {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.footer-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.footer-links a:hover {
-    text-decoration: underline;
-}
-
-.social-buttons {
-    display: flex;
-    gap: 10px;
-}
-
-.social-buttons button {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s;
-}
-
-/* Social day color */
-.social-buttons #facebook{
-    background-color: #1877f2;
-}
-
-.social-buttons #facebook:hover{
-    background-color: #166fe5;
-}
-
-.social-buttons #facebook:active{
-    background-color: #0f65d8;
-}
-
-.social-buttons #twitter{
-    background-color: #1da1f2;
-}
-
-.social-buttons #twitter:hover{
-    background-color: #1a94de;
-}
-
-.social-buttons #twitter:active{
-    background-color: #177fc2;
-}
-
-.social-buttons #instagram{
-    background: linear-gradient(
-        45deg,
-        #f58529 0%,
-        #feda77 20%,
-        #dd2a7b 55%,
-        #8134af 80%,
-        #515bd4 100%
-    );
-}
-
-.social-buttons #instagram:hover{
-    background: linear-gradient(
-        45deg,
-        #e67a1e 0%,
-        #f9d85e 20%,
-        #c9266e 55%,
-        #722c9b 80%,
-        #4652c6 100%
-    );
-}
-
-.social-buttons #instagram:active{
-    background: linear-gradient(
-        45deg,
-        #cc6b18 0%,
-        #efc94e 20%,
-        #b51f61 55%,
-        #612588 80%,
-        #3945b3 100%
-    );
-}
-
-/* Social dark color */
-.dark .social-buttons #facebook{
-    background-color: #145dbf;
-}
-
-.dark .social-buttons #facebook:hover{
-    background-color: #1667cf;
-}
-
-.dark .social-buttons #facebook:active{
-    background-color: #0f53a8;
-}
-
-.dark .social-buttons #twitter{
-    background-color: #0d8bd9;
-}
-
-.dark .social-buttons #twitter:hover{
-    background-color: #1499eb;
-}
-
-.dark .social-buttons #twitter:active{
-    background-color: #0b78be;
-}
-
-.dark .social-buttons #instagram{
-    background: linear-gradient(
-        45deg,
-        #d96b1d 0%,
-        #e8b64a 20%,
-        #b81f63 55%,
-        #62278c 80%,
-        #3948b7 100%
-    );
-}
-
-.dark .social-buttons #instagram:hover{
-    background: linear-gradient(
-        45deg,
-        #e37722 0%,
-        #f0c55a 20%,
-        #c6246b 55%,
-        #b62e98 80%,
-        #4353c5 100%
-    );
-}
-
-.dark .social-buttons #instagram:active{
-    background: linear-gradient(
-        45deg,
-        #c05d17 0%,
-        #d8a73e 20%,
-        #9f1956 55%,
-        #551f79 80%,
-        #3040a8 100%
-    );
-}
-
-/* End */
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 20px;
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.8);
-}
-
-/* ==========================================================================
-   6. Responsive Adaptations
-   ========================================================================== */
+    6. Responsive Adaptations
+    ========================================================================== */
 @media (max-width: 768px) {
     /* ==========================================
        1. Global Mobile Reset & Body Controls
@@ -724,3 +554,5 @@ footer {
         gap: 16px !important;
     }
 }
+
+/* === Responsive: END === */

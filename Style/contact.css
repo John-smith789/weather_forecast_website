@@ -1,0 +1,429 @@
+/* === Reset & Base: START === */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(
+    to bottom,
+    #004b87,
+    #5486f3,
+    #6eaefc
+  );
+  color: #1E293B;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* === Reset & Base: END === */
+
+/* === Dark Mode: START === */
+.dark body{
+    background: linear-gradient(to bottom, #0f172a, #1e293b, #334155);
+}
+/* === Dark Mode: END === */
+
+/* === Navigation: START === */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 0;
+    flex-wrap: wrap;
+    gap: 20px;
+    line-height: 1.6;
+}
+
+
+/* Logo */
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+}
+
+.logo i {
+    font-size: 36px;
+    color: white;
+}
+
+.logo-text h2 {
+    color: white;
+    font-size: 24px;
+}
+
+.logo-text p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 13px;
+}
+
+header nav {
+    display: flex;
+    gap: 20px;
+    font-size: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header nav a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+    color: rgb(255, 255, 255);
+    text-underline-offset: 8px;
+    transition: background 0.1s;
+}
+header nav a#select{
+    text-decoration: underline;
+    color: rgba(255, 255, 255, 0.678);
+    text-underline-offset: 8px;
+    transition: background 0.1s;
+}
+
+/* === Navigation: END === */
+
+/* === Contact Content: START === */
+/* ================= CONTACT ================= */
+
+.contact-container {
+    max-width: 1100px;
+    margin: 45px auto;
+    padding: 0 25px;
+}
+
+
+/* Title */
+
+.contact-title {
+    margin-bottom: 25px;
+}
+
+.contact-title h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+.dark .contact-title h1{
+    color: #ffffff;
+}
+
+.contact-title p {
+    color: #ffffff;
+}
+
+
+/* ================= CONTENT ================= */
+
+.contact-content {
+    display: grid;
+
+    grid-template-columns:
+        1.1fr
+        1fr
+        0.9fr;
+
+    gap: 20px;
+
+    align-items: stretch;
+}
+
+
+/* Form */
+
+#contact-form {
+    background: rgba(255,255,255,0.8);
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,0.08);
+}
+
+#contact-form input,
+#contact-form textarea {
+
+    width: 90%;
+
+    border: 1px solid #d8e1eb;
+
+    border-radius: 8px;
+
+    padding: 13px;
+
+    margin-bottom: 13px;
+
+    outline: none;
+
+    font-size: 13px;
+
+    background: white;
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+    border-color: #368df0;
+}
+
+#contact-form textarea {
+    height: 130px;
+    resize: none;
+}
+
+/* Dark Mode Of Form */
+
+.dark input:-webkit-autofill,
+.dark textarea:-webkit-autofill,
+.dark select:-webkit-autofill,
+.dark input:-webkit-autofill:hover,
+.dark textarea:-webkit-autofill:hover,
+.dark select:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus,
+.dark textarea:-webkit-autofill:focus,
+.dark select:-webkit-autofill:focus,
+.dark input:-webkit-autofill:active,
+.dark textarea:-webkit-autofill:active,
+.dark select:-webkit-autofill:active {
+    -webkit-text-fill-color: #ffffff !important;
+    background-color: rgba(255,255,255,0.1) !important;
+    -webkit-box-shadow: 0 0 0px 1000px rgba(255,255,255,0.1) inset !important;
+    box-shadow: 0 0 0px 1000px rgba(255,255,255,0.1) inset !important;
+    background-clip: padding-box !important;
+    transition: background-color 5000s ease-in-out 0s !important;
+}
+
+/* Keep focused inputs dark in .dark mode */
+.dark #contact-form input:focus,
+.dark #contact-form textarea:focus {
+    background: rgba(255,255,255,0.1) !important;
+    color: #ffffff !important;
+}
+
+/* Additional vendor/internal pseudo selectors for some Chromium builds */
+.dark input:-internal-autofill-selected,
+.dark textarea:-internal-autofill-selected,
+.dark select:-internal-autofill-selected {
+    -webkit-text-fill-color: #ffffff !important;
+    background-color: rgba(255,255,255,0.1) !important;
+}
+.dark #contact-form {
+    background: rgba(255,255,255,0.1);
+}
+
+.dark #contact-form input,
+.dark #contact-form textarea {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border-color: #334155;
+}
+
+
+/* Send Button */
+
+.send-btn {
+    border: none;
+
+    background: #3184e5;
+
+    color: white;
+
+    padding: 12px 20px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+}
+
+.send-btn:hover {
+    background: #176ac8;
+}
+
+
+/* ================= GET IN TOUCH ================= */
+
+.get-touch {
+    background: rgba(255,255,255,0.8);
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,0.08);
+}
+
+.get-touch h2 {
+    margin-bottom: 25px;
+    font-size: 22px;
+}
+
+.info {
+    display: flex;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+.info i {
+    color: #1d78dc;
+
+    font-size: 17px;
+
+    margin-top: 3px;
+}
+
+.info h4 {
+    font-size: 13px;
+
+    margin-bottom: 5px;
+}
+
+.info p {
+    color: #666;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+/* Dark Mode of Get in touch */
+
+
+.dark .get-touch {
+    background: rgba(255,255,255,0.1);
+}
+
+.dark .get-touch h2{
+    color: white;
+}
+
+.dark .get-touch h4 {
+    color: white;
+}
+
+.dark .info{
+    color: white;
+}
+
+.dark .info i{
+    color: #1d78dc;
+}
+
+.dark .info h4 {
+    color: rgb(255, 255, 255);
+}
+
+.dark .info p {
+    color: rgba(255, 255, 255, 0.8);
+}
+/* Social */
+
+.follow {
+    margin-top: 10px;
+    margin-bottom: 12px;
+}
+
+.social {
+    display: flex;
+    gap: 10px;
+}
+
+.social i {
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+
+    background: #3184e5;
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+
+/* ================= MAP ================= */
+
+.map {
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    min-height: 400px;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,0.08);
+}
+
+.map iframe {
+    width: 100%;
+    height: 100%;
+
+    min-height: 400px;
+
+    border: none;
+
+}
+
+/* === Contact Content: END === */
+
+/* === Responsive: START === */
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+
+    .contact-content {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .map {
+        grid-column: span 2;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    header {
+        height: auto;
+        padding: 20px;
+        flex-direction: column;
+        gap: 20px;
+    }
+    nav {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .contact-content {
+        grid-template-columns: 1fr;
+    }
+
+    .map {
+        grid-column: span 1;
+    }
+}
+/* === Responsive: END === */

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      (function() {
+        if (localStorage.getItem("theme") === "dark") {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+    <title>Contact - Daily Forecast</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="Style/contact.css">
+    <link rel="stylesheet" href="Style/site-chrome.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-cloud-sun"></i>
+            <div class="logo-text">
+                <h2>Daily Forecast</h2>
+                <p>Your Daily Weather Companion</p>
+            </div>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="forecast.html">Forecast</a>
+            <a href="tips.html">Tips</a>
+            <a href="about.html">About</a>
+            <a href="contact.html" id="select">Contact</a>
+            <button type="button" aria-label="Toggle theme" onclick="Toggle()"><i id="theme-icon" class="fa-solid fa-moon"></i></button>
+        </nav>
+    </header>
+
+
+    <!-- Contact Section -->
+    <main class="contact-container">
+
+        <div class="contact-title">
+            <h1>Contact Us</h1>
+            <p>We’d love to hear from you!</p>
+        </div>
+
+
+        <div class="contact-content">
+
+            <!-- Contact Form -->
+            <form id="contact-form">
+
+                <input type="text" name="name" placeholder="Your Name" autocomplete="name" required>
+
+                <input type="email" name="email" placeholder="Your Email" autocomplete="email" required>
+
+                <input type="text" id="subject" placeholder="Subject" required>
+
+                <textarea id="message" placeholder="Your Message" required></textarea>
+
+                <button class="send-btn" type="submit">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    Send Message
+                </button>
+
+            </form>
+
+
+            <!-- Get In Touch -->
+            <div class="get-touch">
+
+                <h2>Get in Touch</h2>
+
+                <div class="info">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div>
+                        <h4>Address</h4>
+                        <p>No. 123, Main Street,<br>
+                        Yangon, Myanmar</p>
+                    </div>
+                </div>
+
+                <div class="info">
+                    <i class="fa-solid fa-envelope"></i>
+                    <div>
+                        <h4>Email</h4>
+                        <p>info@dailyforecast.com</p>
+                    </div>
+                </div>
+
+                <div class="info">
+                    <i class="fa-solid fa-phone"></i>
+                    <div>
+                        <h4>Phone</h4>
+                        <p>+95 9 123 456 789</p>
+                    </div>
+                </div>
+
+                <h4 class="follow">Follow Us</h4>
+
+                <div class="social">
+                    <i class="fa-brands fa-facebook-f"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-telegram"></i>
+                </div>
+
+            </div>
+
+
+            <!-- Map -->
+            <div class="map">
+                <iframe
+                    src="https://www.google.com/maps?q=Technological%20University%20Meiktila&t=k&z=17&output=embed"
+                    width="100%"
+                    height="400"
+                    style="border:0;"
+                    allowfullscreen="true"
+                    loading="lazy"
+                    title="Map showing Technological University Meiktila (Satellite)">
+                </iframe>
+            </div>
+
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <i class="fa-solid fa-cloud"></i>
+                <h3>Daily Forecast</h3>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="forecast.html">Forecast</a>
+                <a href="tips.html">Tips</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="social-buttons">
+                <button type="button" aria-label="Facebook" id="facebook"><i class="fa-brands fa-facebook"></i></button>
+                <button type="button" aria-label="Twitter" id="twitter"><i class="fa-brands fa-x-twitter"></i></button>
+                <button type="button" aria-label="Instagram" id="instagram"><i class="fa-brands fa-instagram"></i></button>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Daily Forecast. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+</body>
+</html>

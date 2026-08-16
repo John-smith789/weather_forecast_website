@@ -1,6 +1,7 @@
+/* === Reset & Base: START === */
 /* ==========================================================================
-   1. Core Reset & Global Styles
-   ========================================================================== */
+    1. Core Reset & Global Styles
+    ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -16,9 +17,11 @@ body {
     color: #1e293b;
 }
 
+/* === Reset & Base: END === */
+
 /* ==========================================================================
-   8. Full Color Dark Mode Overrides
-   ========================================================================== */
+    8. Full Color Dark Mode Overrides
+    ========================================================================== */
 .dark body{
     background: linear-gradient(to bottom, #0f172a, #1e293b, #334155);
     color: #f8fafc;
@@ -101,8 +104,10 @@ body {
 }
 
 .dark footer {
+    /* === Dark Footer: START === */
     background-color: #0f172a;
 }
+/* === Dark Footer: END === */
 
 /* ==========================================================================
    2. Header Navigation (Perfect Alignment & One Link Per Line on Minimize)
@@ -441,192 +446,6 @@ main #label {
     display: block;
 }
 
-/* ==========================================================================
-   6. Footer Styling
-   ========================================================================== */
-footer {
-    width: 100%;
-    background-color: #004b87;
-    color: white;
-    padding: 40px 5% 20px 5%;
-    margin-top: auto;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding-bottom: 25px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.footer-brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.footer-links {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.footer-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.footer-links a:hover {
-    text-decoration: underline;
-}
-
-.social-buttons {
-    display: flex;
-    gap: 10px;
-}
-
-.social-buttons button {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s;
-}
-
-/* Social day color */
-.social-buttons #facebook{
-    background-color: #1877f2;
-}
-
-.social-buttons #facebook:hover{
-    background-color: #166fe5;
-}
-
-.social-buttons #facebook:active{
-    background-color: #0f65d8;
-}
-
-.social-buttons #twitter{
-    background-color: #1da1f2;
-}
-
-.social-buttons #twitter:hover{
-    background-color: #1a94de;
-}
-
-.social-buttons #twitter:active{
-    background-color: #177fc2;
-}
-
-.social-buttons #instagram{
-    background: linear-gradient(
-        45deg,
-        #f58529 0%,
-        #feda77 20%,
-        #dd2a7b 55%,
-        #8134af 80%,
-        #515bd4 100%
-    );
-}
-
-.social-buttons #instagram:hover{
-    background: linear-gradient(
-        45deg,
-        #e67a1e 0%,
-        #f9d85e 20%,
-        #c9266e 55%,
-        #722c9b 80%,
-        #4652c6 100%
-    );
-}
-
-.social-buttons #instagram:active{
-    background: linear-gradient(
-        45deg,
-        #cc6b18 0%,
-        #efc94e 20%,
-        #b51f61 55%,
-        #612588 80%,
-        #3945b3 100%
-    );
-}
-
-/* Social dark color */
-.dark .social-buttons #facebook{
-    background-color: #145dbf;
-}
-
-.dark .social-buttons #facebook:hover{
-    background-color: #1667cf;
-}
-
-.dark .social-buttons #facebook:active{
-    background-color: #0f53a8;
-}
-
-.dark .social-buttons #twitter{
-    background-color: #0d8bd9;
-}
-
-.dark .social-buttons #twitter:hover{
-    background-color: #1499eb;
-}
-
-.dark .social-buttons #twitter:active{
-    background-color: #0b78be;
-}
-
-.dark .social-buttons #instagram{
-    background: linear-gradient(
-        45deg,
-        #d96b1d 0%,
-        #e8b64a 20%,
-        #b81f63 55%,
-        #62278c 80%,
-        #3948b7 100%
-    );
-}
-
-.dark .social-buttons #instagram:hover{
-    background: linear-gradient(
-        45deg,
-        #e37722 0%,
-        #f0c55a 20%,
-        #c6246b 55%,
-        #b62e98 80%,
-        #4353c5 100%
-    );
-}
-
-.dark .social-buttons #instagram:active{
-    background: linear-gradient(
-        45deg,
-        #c05d17 0%,
-        #d8a73e 20%,
-        #9f1956 55%,
-        #551f79 80%,
-        #3040a8 100%
-    );
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 20px;
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.8);
-}
-/* End */
-
-
-
-
 /* Autocomplete Dropdown Styles */
 .search-box {
     position: relative; /* Ensures dropdown aligns correctly */
@@ -879,10 +698,12 @@ footer {
     /* ==========================================
        6. Compact Footer
        ========================================== */
+    /* === Footer (mobile): START === */
     footer {
         padding: 32px 16px 24px 16px !important;
 
     }
+    /* === Footer (mobile): END === */
 
     .footer-content {
         flex-direction: column !important;

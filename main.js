@@ -13,6 +13,7 @@ const input = document.getElementById("cityInput");
 const dropdown = document.getElementById("dropdown");
 const searchBtn = document.getElementById("search");
 const defaultBtn = document.getElementById("default");
+const sendMessage = document.getElementById("contact-form");
 
 function weatherIcon(code) {
     if ([0, 1].includes(code)) return "fa-sun";
@@ -189,30 +190,35 @@ async function searchCity() {
     }
 }
 
-input.addEventListener("input", () => {
-    const text = input.value.trim().toLowerCase();
-    dropdown.innerHTML = "";
-    if (!text) {
-        dropdown.style.display = "none";
-        return;
-    }
-
-    cities.filter(city => city.toLowerCase().startsWith(text)).forEach(city => {
-        const option = document.createElement("div");
-        option.textContent = city;
-        option.addEventListener("click", () => {
-            input.value = city;
+if(input){
+    input.addEventListener("input", () => {
+        const text = input.value.trim().toLowerCase();
+        dropdown.innerHTML = "";
+        if (!text) {
             dropdown.style.display = "none";
-        });
-        dropdown.appendChild(option);
-    });
-    dropdown.style.display = dropdown.children.length ? "block" : "none";
-});
+            return;
+        }
 
-searchBtn.addEventListener("click", searchCity);
-input.addEventListener("keydown", event => {
-    if (event.key === "Enter") searchCity();
-});
+        cities.filter(city => city.toLowerCase().startsWith(text)).forEach(city => {
+            const option = document.createElement("div");
+            option.textContent = city;
+            option.addEventListener("click", () => {
+                input.value = city;
+                dropdown.style.display = "none";
+            });
+            dropdown.appendChild(option);
+        });
+        dropdown.style.display = dropdown.children.length ? "block" : "none";
+    });    
+}
+
+if(searchBtn){
+    searchBtn.addEventListener("click", searchCity);
+    input.addEventListener("keydown", event => {
+        if (event.key === "Enter") searchCity();
+    });    
+}
+
 
 if (defaultBtn) {
     defaultBtn.addEventListener("click", async () => {
@@ -221,15 +227,11 @@ if (defaultBtn) {
 
         try {
             // Save the city in the input as the website's default city.
-            // const city = await findCity(cityName);
-            // localStorage.setItem(DEFAULT_CITY_KEY, JSON.stringify(city));
-            // // saveCity(city);
-            // input.value = city.name;
-            // await displayCity(city);
             const city = await findCity(cityName);
             localStorage.setItem(DEFAULT_CITY_KEY, JSON.stringify(city));
             input.value = city.name;
             await displayCity(city);
+
         } catch (error) {
             console.error(error);
             alert("Search for a valid city before setting it as the default.");
@@ -254,3 +256,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const icon = document.getElementById("theme-icon");
     if (icon && localStorage.getItem("theme") === "dark") icon.className = "fa-solid fa-sun";
 });
+
+// //Send message to the programmer
+// if(sendMessage){
+//     sendMessage.addEventListener("submit", function (e){
+//         e.preventDefault();
+
+//         const name = document.getElementsByName("name").value;
+//         const email = document.getElementsByName("email").value;
+//         const subject = document.getElementById("subject").value;
+//         const message = document.getElementById("message").value;
+
+//         const body = 
+//         `Name: ${name}%0D%0A` +
+//         `Email: ${email}%0D%0A%0D%0A` +
+//         `Message:%0D%0A${encodeURIComponent(message)}`;
+
+//         window.location.href = `mailto:jamextermux606@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+//     });    
+// }
+
+
+

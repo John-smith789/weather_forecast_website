@@ -1,3 +1,4 @@
+/* === Reset & Base: START === */
 * {
     margin: 0;
     padding: 0;
@@ -11,10 +12,13 @@ body {
     background-color: #f8fafc;
 }
 
+/* === Reset & Base: END === */
+
 /* ==========================================================================
-   Full Color Dark Mode Overrides
-   ========================================================================== */
+    Full Color Dark Mode Overrides
+    ========================================================================== */
 .dark body{
+/* === Dark Mode: START === */
     background-color: #0f172a;
 }
 
@@ -77,10 +81,10 @@ body {
 .dark .search-dropdown li span.admin-region {
     color: #94a3b8;
 }
+/* === Dark Mode: END === */
 
-.dark footer {
-    background-color: #0f172a;
-}
+/* footer color moved to site-chrome.css for consistent behavior across pages */
+/* === Header & Hero: START === */
 /* Header & Hero Section */
 .container {
     width: 100%;
@@ -382,7 +386,10 @@ header nav button:active {
 
 /* Popular Cities Section */
 .popular-city-weather-card {
+    width: 100%;
+    box-sizing: border-box;
     padding: 50px 5%;
+    margin: 0;
 }
 
 .popular-city-weather-card h2 {
@@ -450,185 +457,6 @@ header nav button:active {
     font-weight: 600;
     color: #3b82f6;
 }
-
-/* Footer Section */
-footer {
-    background-color: #004b87;
-    color: white;
-    padding: 40px 5% 20px 5%;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding-bottom: 25px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.footer-brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.footer-links {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.footer-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.footer-links a:hover {
-    text-decoration: underline;
-}
-
-.social-buttons {
-    display: flex;
-    gap: 10px;
-}
-
-.social-buttons button {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s;
-}
-
-/* Social day color */
-.social-buttons #facebook{
-    background-color: #1877f2;
-}
-
-.social-buttons #facebook:hover{
-    background-color: #166fe5;
-}
-
-.social-buttons #facebook:active{
-    background-color: #0f65d8;
-}
-
-.social-buttons #twitter{
-    background-color: #1da1f2;
-}
-
-.social-buttons #twitter:hover{
-    background-color: #1a94de;
-}
-
-.social-buttons #twitter:active{
-    background-color: #177fc2;
-}
-
-.social-buttons #instagram{
-    background: linear-gradient(
-        45deg,
-        #f58529 0%,
-        #feda77 20%,
-        #dd2a7b 55%,
-        #8134af 80%,
-        #515bd4 100%
-    );
-}
-
-.social-buttons #instagram:hover{
-    background: linear-gradient(
-        45deg,
-        #e67a1e 0%,
-        #f9d85e 20%,
-        #c9266e 55%,
-        #722c9b 80%,
-        #4652c6 100%
-    );
-}
-
-.social-buttons #instagram:active{
-    background: linear-gradient(
-        45deg,
-        #cc6b18 0%,
-        #efc94e 20%,
-        #b51f61 55%,
-        #612588 80%,
-        #3945b3 100%
-    );
-}
-
-/* Social dark color */
-.dark .social-buttons #facebook{
-    background-color: #145dbf;
-}
-
-.dark .social-buttons #facebook:hover{
-    background-color: #1667cf;
-}
-
-.dark .social-buttons #facebook:active{
-    background-color: #0f53a8;
-}
-
-.dark .social-buttons #twitter{
-    background-color: #0d8bd9;
-}
-
-.dark .social-buttons #twitter:hover{
-    background-color: #1499eb;
-}
-
-.dark .social-buttons #twitter:active{
-    background-color: #0b78be;
-}
-
-.dark .social-buttons #instagram{
-    background: linear-gradient(
-        45deg,
-        #d96b1d 0%,
-        #e8b64a 20%,
-        #b81f63 55%,
-        #62278c 80%,
-        #3948b7 100%
-    );
-}
-
-.dark .social-buttons #instagram:hover{
-    background: linear-gradient(
-        45deg,
-        #e37722 0%,
-        #f0c55a 20%,
-        #c6246b 55%,
-        #b62e98 80%,
-        #4353c5 100%
-    );
-}
-
-.dark .social-buttons #instagram:active{
-    background: linear-gradient(
-        45deg,
-        #c05d17 0%,
-        #d8a73e 20%,
-        #9f1956 55%,
-        #551f79 80%,
-        #3040a8 100%
-    );
-}
-
-/* End */
-.footer-bottom {
-    text-align: center;
-    padding-top: 20px;
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.8);
-}
 /* Autocomplete Dropdown Styles */
 .search-box {
     position: relative; /* Ensures dropdown aligns correctly */
@@ -670,6 +498,7 @@ footer {
 }
 
 /* Responsive Breakpoints */
+/* === Header & Hero: END === */
 @media (max-width: 768px) {
     /* ==========================================
        1. Global Mobile Reset & Body Controls
@@ -937,8 +766,9 @@ footer {
 
 /* Home page visual refresh — keeps all existing weather data and images. */
 .popular-city-weather-card {
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
     padding: 54px 5%;
 }
 

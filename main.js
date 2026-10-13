@@ -256,25 +256,3 @@ document.addEventListener("DOMContentLoaded", () => {
     const icon = document.getElementById("theme-icon");
     if (icon && localStorage.getItem("theme") === "dark") icon.className = "fa-solid fa-sun";
 });
-
-// //Send message to the programmer
-// if(sendMessage){
-//     sendMessage.addEventListener("submit", function (e){
-//         e.preventDefault();
-
-//         const name = document.getElementsByName("name").value;
-//         const email = document.getElementsByName("email").value;
-//         const subject = document.getElementById("subject").value;
-//         const message = document.getElementById("message").value;
-
-//         const body = 
-//         `Name: ${name}%0D%0A` +
-//         `Email: ${email}%0D%0A%0D%0A` +
-//         `Message:%0D%0A${encodeURIComponent(message)}`;
-
-//         window.location.href = `mailto:jamextermux606@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
-//     });    
-// }
-
-
-

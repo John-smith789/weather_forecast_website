@@ -1,4 +1,5 @@
-/* === Tokens: START === */
+/* Regular styles */
+/* Design tokens */
 :root {
     --navy: #004b87;
     --blue: #2563eb;
@@ -9,8 +10,7 @@
     --shadow: 0 14px 34px rgba(15, 23, 42, 0.14);
 }
 
-/* === Tokens: END === */
-
+/* Base */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
@@ -28,13 +28,7 @@ body {
   position: relative;
 }
 
-/* === Dark Mode: START === */
-.dark body{
-    background: linear-gradient(to bottom, #0f172a, #1e293b, #334155);
-}
-
-
-/* === Header & Hero: START === */
+/* Header and hero */
 header {
     width: min(1200px, 100%);
     margin: 0 auto;
@@ -58,8 +52,6 @@ header nav button {
     color: var(--ink); background: #f8fafc; font-size: 16px; transition: transform .2s, background .2s;
 }
 header nav button:hover { transform: translateY(-2px); background: #dbeafe; }
-.dark header nav button { color: #fff; background: #334155; }
-
 .hero-section {
     width: min(1040px, 90%);
     margin: 34px auto 0;
@@ -104,24 +96,15 @@ header nav button:hover { transform: translateY(-2px); background: #dbeafe; }
 .card p, .card li { color: var(--muted); line-height: 1.65; }
 .card ul { padding-left: 20px; display: grid; gap: 3px; }
 
-.dark .card { background: #1e293b; border-color: #475569; box-shadow: 0 8px 24px rgba(0,0,0,.28); }
-.dark .card p, .dark .card li { color: #cbd5e1; }
-.dark .card > i { background: linear-gradient(135deg, #0369a1, #0ea5e9); }
-
 /* === Header & Hero: END === */
 
-/* === Responsive: START === */
-@media (max-width: 768px) {
+/* Responsive */
+@media (min-width: 481px) and (max-width: 768px) {
     body {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         background-color: #f1f5f9;
     }
 
-    .dark body {
-        background-color: #0b0f19;
-    }
-
-    /* Keep the same centered, readable hero composition as desktop. */
     .hero-section {
         width: calc(100% - 32px);
         margin-top: 16px;
@@ -131,7 +114,6 @@ header nav button:hover { transform: translateY(-2px); background: #dbeafe; }
     .hero-section h1 { font-size: clamp(1.85rem, 8vw, 2.4rem); line-height: 1.18; }
     .hero-section p { margin-top: 14px; font-size: .98rem; line-height: 1.65; }
 
-    /* Cards are full-width and stacked vertically, one card per row. */
     .card-section {
         width: calc(100% - 32px);
         grid-template-columns: 1fr;
@@ -161,4 +143,43 @@ header nav button:hover { transform: translateY(-2px); background: #dbeafe; }
     .footer-links { gap: 10px 16px; }
 }
 
-/* === Responsive: END === */
+@media (max-width: 480px) {
+    .hero-section {
+        width: calc(100% - 24px);
+        padding: 24px 18px;
+    }
+    .card-section {
+        width: calc(100% - 24px);
+    }
+}
+
+/* Dark mode */
+.dark body {
+    background: linear-gradient(to bottom, #0f172a, #1e293b, #334155);
+}
+
+.dark header nav button {
+    color: #fff;
+    background: #334155;
+}
+
+.dark .card {
+    background: #1e293b;
+    border-color: #475569;
+    box-shadow: 0 8px 24px rgba(0,0,0,.28);
+}
+
+.dark .card p,
+.dark .card li {
+    color: #cbd5e1;
+}
+
+.dark .card > i {
+    background: linear-gradient(135deg, #0369a1, #0ea5e9);
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .dark body {
+        background-color: #0b0f19;
+    }
+}

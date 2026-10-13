@@ -1,7 +1,5 @@
-/* ==========================================================================
-   1. Design System & Tokens (Extracted directly from UI specification)
-   ========================================================================== */
-/* === Tokens: START === */
+/* Regular styles */
+/* Design tokens */
 :root {
   --color-primary: #3B82F6;
   --color-secondary: #60A5FA;
@@ -10,7 +8,6 @@
   --color-dark: #1E293B;
   --color-muted: #64748B;
   
-  /* Weather Specific Accents */
   --sunny-yellow: #F59E0B;
   --rainy-blue: #2563EB;
   --windy-teal: #0D9488;
@@ -25,9 +22,7 @@
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* === Tokens: END === */
-
-/* Base Reset */
+/* Base */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -49,35 +44,7 @@ body {
   position: relative;
 }
 
-/* === Base Reset & Body: END === */
-
-
-/* === Dark Mode Overrides: START === */
-.dark body{
-    background: linear-gradient(to bottom, #0f172a, #1e293b, #334155);
-}
-
-.dark .tip-card {
-    background: #1e293b;
-    border-color: #334155;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-.dark .card-title {
-    color: #f8fafc;
-}
-
-.dark .tips-list li {
-    color: #cbd5e1;
-}
-
-.dark footer {
-    background-color: #0f172a;
-}
-
-/* === Dark Mode Overrides: END === */
-
-/* Tips page visual refresh — all supplied tips and icons remain unchanged. */
+/* Page section */
 .hero { padding: 48px 0 36px; }
 .hero-title { font-size: clamp(2rem, 4vw, 2.7rem); }
 .tips-grid { gap: 22px; margin-bottom: 56px; }
@@ -86,9 +53,7 @@ body {
     border-radius: 20px;
     box-shadow: 0 12px 28px rgba(15, 23, 42, .12);
 }
-.dark .tip-card { border-color: #475569; }
-
-@media (max-width: 768px) {
+@media (min-width: 481px) and (max-width: 768px) {
     .hero { padding: 30px 0 24px; }
     .hero-title { font-size: 2rem; }
     .tips-grid { gap: 16px; margin-bottom: 38px; }
@@ -182,21 +147,6 @@ header nav button:hover {
 header nav button:active {
     background-color: #2563eb; /* Light Active */
     color: #ffffff;            /* White icon when active */
-}
-
-/* Dark Mode Overrides */
-.dark header nav button {
-    background-color: #374151; /* Dark Normal */
-    color: #ffffff;            /* White icon for dark mode */
-}
-
-.dark header nav button:hover {
-    background-color: #4b5563; /* Dark Hover */
-}
-
-.dark header nav button:active {
-    background-color: #2563eb; /* Dark Active */
-    color: #ffffff;
 }
 
 /* === Hero: START === */
@@ -326,26 +276,13 @@ main {
 
 /* === Tips Cards: END === */
 
-/* === Responsive: START === */
-/* ==========================================================================
-    6. Responsive Adaptations
-    ========================================================================== */
-@media (max-width: 768px) {
-    /* ==========================================
-       1. Global Mobile Reset & Body Controls
-       ========================================== */
+/* Responsive */
+@media (min-width: 481px) and (max-width: 768px) {
     body {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         background-color: #f1f5f9;
     }
 
-    .dark body {
-        background-color: #0b0f19;
-    }
-
-    /* ==========================================
-       3. Main Hero & Dynamic Content Wrapper
-       ========================================== */
     .container {
         min-height: auto !important;
         padding: 0 16px 32px 16px !important;
@@ -375,7 +312,6 @@ main {
         font-size: 14px !important;
     }
 
-    /* Mobile Search Bar Styling */
     .search-box {
         margin: 0 auto !important;
         max-width: 100% !important;
@@ -393,9 +329,6 @@ main {
         box-shadow: 0 10px 25px rgba(0,0,0,0.2) !important;
     }
 
-    /* ==========================================
-       4. App-Style Weather Dashboard Cards
-       ========================================== */
     .weather-card {
         max-width: 100% !important;
         border-radius: 24px !important;
@@ -433,7 +366,6 @@ main {
         color: #38bdf8;
     }
 
-    /* Glassmorphism for Search Results Screen (Forecast.html) */
     .search-result {
         flex-direction: column !important;
         padding: 24px 16px !important;
@@ -444,13 +376,8 @@ main {
         border: 1px solid rgba(255, 255, 255, 0.5) !important;
     }
 
-    .dark .search-result {
-        background: linear-gradient(135deg, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.7)) !important;
-        border: 1px solid rgba(255, 255, 255, 0.05) !important;
-    }
-
     .search-result img {
-        display: block !important; /* Keep city image, but frame it cleanly */
+        display: block !important;
         width: 100% !important;
         height: 140px !important;
         border-radius: 16px !important;
@@ -458,7 +385,7 @@ main {
 
     .search-data-grid {
         width: 100% !important;
-        grid-template-columns: repeat(2, 1fr) !important; /* 2x2 Clean metric grid */
+        grid-template-columns: repeat(2, 1fr) !important;
         gap: 12px !important;
     }
 
@@ -472,11 +399,6 @@ main {
         gap: 4px !important;
     }
 
-    .dark .metric-item {
-        background: rgba(255, 255, 255, 0.03);
-    }
-
-    /* Horizontal Swipe Panel for Hourly Tracking */
     .hourly-forecast {
         display: flex !important;
         grid-template-columns: none !important;
@@ -494,9 +416,8 @@ main {
         box-shadow: 0 4px 10px rgba(0,0,0,0.03) !important;
     }
 
-    /* 7-Day Forecast Grid Scaling */
     .seven-day-forecast {
-        grid-template-columns: repeat(2, 1fr) !important; /* Adaptive grid rows for Android */
+        grid-template-columns: repeat(2, 1fr) !important;
         gap: 12px !important;
     }
 
@@ -505,21 +426,18 @@ main {
         border-radius: 16px !important;
     }
 
-    /* ==========================================
-       5. Popular Cities List Layout
-       ========================================== */
     .popular-city-weather-card {
         padding: 32px 16px !important;
     }
 
     .popular-city {
-        grid-template-columns: 1fr !important; /* Stack vertically like an app dashboard */
+        grid-template-columns: 1fr !important;
         gap: 16px !important;
     }
 
     .city {
         max-width: 100% !important;
-        flex-direction: row !important; /* Left-to-right rows instead of tall boxes */
+        flex-direction: row !important;
         height: 90px;
         align-items: center;
         border-radius: 16px !important;
@@ -535,12 +453,8 @@ main {
         padding: 0 16px !important;
     }
 
-    /* ==========================================
-       6. Compact Footer
-       ========================================== */
     footer {
         padding: 32px 16px 24px 16px !important;
-
     }
 
     .footer-content {
@@ -555,4 +469,61 @@ main {
     }
 }
 
-/* === Responsive: END === */
+@media (max-width: 480px) {
+    .hero { padding: 30px 0 24px; }
+    .hero-title { font-size: 2rem; }
+    .tips-grid { gap: 16px; margin-bottom: 38px; }
+    .tip-card { padding: 24px 20px; border-radius: 18px; }
+}
+
+/* Dark mode */
+.dark body {
+    background: linear-gradient(to bottom, #0f172a, #1e293b, #334155);
+}
+
+.dark .tip-card {
+    background: #1e293b;
+    border-color: #475569;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dark .card-title {
+    color: #f8fafc;
+}
+
+.dark .tips-list li {
+    color: #cbd5e1;
+}
+
+.dark footer {
+    background-color: #0f172a;
+}
+
+.dark header nav button {
+    background-color: #374151;
+    color: #ffffff;
+}
+
+.dark header nav button:hover {
+    background-color: #4b5563;
+}
+
+.dark header nav button:active {
+    background-color: #2563eb;
+    color: #ffffff;
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .dark body {
+        background-color: #0b0f19;
+    }
+
+    .dark .search-result {
+        background: linear-gradient(135deg, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.7)) !important;
+        border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }
+
+    .dark .metric-item {
+        background: rgba(255, 255, 255, 0.03);
+    }
+}

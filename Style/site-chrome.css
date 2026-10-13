@@ -1,3 +1,4 @@
+/* Regular styles */
 /* === Header & Nav: START === */
 header {
     width: min(1200px, 100%);
@@ -52,11 +53,6 @@ header nav button {
 header nav button:hover { 
     transform: translateY(-2px); 
     background: #dbeafe; 
-}
-
-.dark header nav button { 
-    color: #fff; 
-    background: #334155; 
 }
 
 /* === Header & Nav: END === */
@@ -177,68 +173,6 @@ footer {
     );
 }
 
-/* Social dark color */
-.dark .social-buttons #facebook{
-    background-color: #145dbf;
-}
-
-.dark .social-buttons #facebook:hover{
-    background-color: #1667cf;
-}
-
-.dark .social-buttons #facebook:active{
-    background-color: #0f53a8;
-}
-
-.dark .social-buttons #twitter{
-    background-color: #0d8bd9;
-}
-
-.dark .social-buttons #twitter:hover{
-    background-color: #1499eb;
-}
-
-.dark .social-buttons #twitter:active{
-    background-color: #0b78be;
-}
-
-.dark .social-buttons #instagram{
-    background: linear-gradient(
-        45deg,
-        #d96b1d 0%,
-        #e8b64a 20%,
-        #b81f63 55%,
-        #62278c 80%,
-        #3948b7 100%
-    );
-}
-
-.dark .social-buttons #instagram:hover{
-    background: linear-gradient(
-        45deg,
-        #e37722 0%,
-        #f0c55a 20%,
-        #c6246b 55%,
-        #b62e98 80%,
-        #4353c5 100%
-    );
-}
-
-.dark .social-buttons #instagram:active{
-    background: linear-gradient(
-        45deg,
-        #c05d17 0%,
-        #d8a73e 20%,
-        #9f1956 55%,
-        #551f79 80%,
-        #3040a8 100%
-    );
-}
-.dark footer {
-    /* === Dark Footer: START === */
-    background-color: #0f172a;
-}
-/* === Dark Footer: END === */
 .footer-bottom {
     text-align: center;
     padding-top: 20px;
@@ -246,8 +180,8 @@ footer {
     color: rgba(255, 255, 255, 0.8);
 }
 
-/* Shared Android header: matches the final About page layout on every page. */
-@media (max-width: 768px) {
+/* Responsive layout */
+@media (min-width: 481px) and (max-width: 768px) {
     body > header,
     .container > header {
         position: relative;
@@ -315,7 +249,7 @@ footer {
     .footer-links { gap: 16px !important; }
 }
 
-@media (max-width: 390px) {
+@media (max-width: 480px) {
     body > header,
     .container > header { padding-inline: 14px !important; }
     body > header nav,
@@ -324,4 +258,71 @@ footer {
     .container > header nav a { padding-inline: 8px !important; font-size: 13px !important; }
     body > header nav button,
     .container > header nav button { right: 14px; }
+}
+
+/* Dark mode */
+.dark header nav button {
+    color: #fff;
+    background: #334155;
+}
+
+.dark .social-buttons #facebook {
+    background-color: #145dbf;
+}
+
+.dark .social-buttons #facebook:hover {
+    background-color: #1667cf;
+}
+
+.dark .social-buttons #facebook:active {
+    background-color: #0f53a8;
+}
+
+.dark .social-buttons #twitter {
+    background-color: #0d8bd9;
+}
+
+.dark .social-buttons #twitter:hover {
+    background-color: #1499eb;
+}
+
+.dark .social-buttons #twitter:active {
+    background-color: #0b78be;
+}
+
+.dark .social-buttons #instagram {
+    background: linear-gradient(
+        45deg,
+        #d96b1d 0%,
+        #e8b64a 20%,
+        #b81f63 55%,
+        #62278c 80%,
+        #3948b7 100%
+    );
+}
+
+.dark .social-buttons #instagram:hover {
+    background: linear-gradient(
+        45deg,
+        #e37722 0%,
+        #f0c55a 20%,
+        #c6246b 55%,
+        #b62e98 80%,
+        #4353c5 100%
+    );
+}
+
+.dark .social-buttons #instagram:active {
+    background: linear-gradient(
+        45deg,
+        #c05d17 0%,
+        #d8a73e 20%,
+        #9f1956 55%,
+        #551f79 80%,
+        #3040a8 100%
+    );
+}
+
+.dark footer {
+    background-color: #0f172a;
 }

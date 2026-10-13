@@ -1,7 +1,5 @@
-/* === Reset & Base: START === */
-/* ==========================================================================
-    1. Core Reset & Global Styles
-    ========================================================================== */
+/* Regular styles */
+/* Base */
 * {
     margin: 0;
     padding: 0;
@@ -16,98 +14,6 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     color: #1e293b;
 }
-
-/* === Reset & Base: END === */
-
-/* ==========================================================================
-    8. Full Color Dark Mode Overrides
-    ========================================================================== */
-.dark body{
-    background: linear-gradient(to bottom, #0f172a, #1e293b, #334155);
-    color: #f8fafc;
-}
-
-.dark header nav a {
-    color: #f1f5f9;
-}
-
-.dark header nav a:hover,
-.dark header nav a#select {
-    color: #38bdf8;
-}
-
-.dark .search-container h4,
-.dark main #label {
-    color: #f1f5f9;
-}
-
-.dark .search-box input[type="text"] {
-    background-color: #1e293b;
-    color: #f8fafc;
-    border: 1px solid #334155;
-}
-
-.dark .search-box input[type="text"]::placeholder {
-    color: #94a3b8;
-}
-
-.dark .search-result {
-    background-color: #1e293b;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-}
-
-.dark .search-detail h3,
-.dark .metric-label {
-    color: #94a3b8;
-}
-
-.dark .search-detail h1,
-.dark .metric-value {
-    color: #f8fafc;
-}
-
-.dark .metric-item {
-    border-bottom-color: #334155;
-}
-
-.dark .seven-day-detail,
-.dark .hourly-detail {
-    background-color: #1e293b;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.dark .seven-day-detail h3,
-.dark .seven-day-detail h2,
-.dark .hourly-detail h3 {
-    color: #f8fafc;
-}
-
-.dark .seven-day-detail p {
-    color: #94a3b8;
-}
-
-.dark .search-dropdown {
-    background: #1e293b;
-    border: 1px solid #334155;
-}
-
-.dark .search-dropdown li {
-    color: #f8fafc;
-}
-
-.dark .search-dropdown li:hover {
-    background-color: #334155;
-}
-
-.dark .search-dropdown li span.admin-region {
-    color: #94a3b8;
-}
-
-.dark footer {
-    /* === Dark Footer: START === */
-    background-color: #0f172a;
-}
-/* === Dark Footer: END === */
 
 /* ==========================================================================
    2. Header Navigation (Perfect Alignment & One Link Per Line on Minimize)
@@ -193,34 +99,18 @@ header nav button:active {
     color: #ffffff;            /* White icon when active */
 }
 
-/* Dark Mode Overrides */
-.dark header nav button {
-    background-color: #374151; /* Dark Normal */
-    color: #ffffff;            /* White icon for dark mode */
-}
-
-.dark header nav button:hover {
-    background-color: #4b5563; /* Dark Hover */
-}
-
-.dark header nav button:active {
-    background-color: #2563eb; /* Dark Active */
-    color: #ffffff;
-}
-
 /* ==========================================================================
    3. Main Content Container & Layout Components
    ========================================================================== */
 main {
     flex: 1;
-    padding: 20px 5%;
 }
 
 .search-container {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    padding: 2rem 0;
+    padding: 12px 0 24px;
     color: white;
 }
 
@@ -263,18 +153,45 @@ main {
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 21px;
 }
-.dark .dropdown div {
-    background-color: #1e293b;
-    color: rgb(255, 255, 255);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-}
-
 .dropdown div:hover {
     background: #eeeeee;
 }
-.dark .dropdown div:hover {
-    background: #111111;
+
+.search-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    margin-top: 6px;
+    max-height: 220px;
+    overflow-y: auto;
+    z-index: 1000;
+    list-style: none;
+    padding: 6px 0;
 }
+
+.search-dropdown li {
+    padding: 10px 16px;
+    color: #1e293b;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s ease;
+}
+
+.search-dropdown li:hover {
+    background-color: #f1f5f9;
+}
+
+.search-dropdown li span.admin-region {
+    font-size: 12px;
+    color: #64748b;
+    margin-left: 6px;
+}
+
 .search-box button {
     position: absolute;
     right: 6px;
@@ -298,12 +215,6 @@ main {
     background: #1a40bd;
 }
 
-main #label {
-    margin: 2rem 0 1rem 0;
-    color: white;
-    font-size: 1.3rem;
-}
-
 /* ==========================================================================
    4. Search Weather Result Card (Desktop Base View)
    ========================================================================== */
@@ -313,13 +224,41 @@ main #label {
     justify-content: space-between;
     align-items: center;
     background-color: white;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, .72);
+    box-shadow: 0 14px 32px rgba(15, 23, 42, .14);
     margin: 0 0 2.5rem 0;
-    border-radius: 24px;
+    border-radius: 22px;
     padding: 30px;
     gap: 2rem;
 }
 
+.default-city-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 14px;
+    padding: 8px 13px;
+    border: 1px solid #bfdbfe;
+    border-radius: 999px;
+    color: #1d4ed8;
+    background: #eff6ff;
+    box-shadow: 0 4px 10px rgba(37,99,235,.1);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
+
+.default-city-button:hover {
+    color: #fff;
+    background: #2563eb;
+    box-shadow: 0 7px 14px rgba(37,99,235,.25);
+    transform: translateY(-2px);
+}
+
+.default-city-button:active { transform: translateY(0); }
+.default-city-button i { color: #f59e0b; }
+.default-city-button:hover i { color: #fef3c7; }
 .search-detail h3 {
     color: #64748b;
     font-size: 1rem;
@@ -379,6 +318,12 @@ main #label {
     border-radius: 16px;
 }
 
+main #label {
+    margin: 2rem 0 1rem 0;
+    color: white;
+    font-size: 1.3rem;
+}
+
 /* ==========================================================================
    5. Forecast Content Grids (7-Day & Hourly Components)
    ========================================================================== */
@@ -391,11 +336,15 @@ main #label {
 
 .seven-day-detail {
     background-color: white;
-    border-radius: 16px;
+    border: 1px solid rgba(226, 232, 240, .9);
+    border-radius: 18px;
     padding: 20px 10px;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, .08);
+    transition: transform .2s ease;
 }
+
+.seven-day-detail:hover { transform: translateY(-4px); }
 
 .seven-day-detail h3 {
     font-size: 1rem;
@@ -428,11 +377,15 @@ main #label {
 
 .hourly-detail {
     background-color: white;
-    border-radius: 14px;
+    border: 1px solid rgba(226, 232, 240, .9);
+    border-radius: 18px;
     padding: 15px 10px;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, .08);
+    transition: transform .2s ease;
 }
+
+.hourly-detail:hover { transform: translateY(-4px); }
 
 .hourly-detail h3 {
     font-size: 0.9rem;
@@ -446,50 +399,8 @@ main #label {
     display: block;
 }
 
-/* Autocomplete Dropdown Styles */
-.search-box {
-    position: relative; /* Ensures dropdown aligns correctly */
-}
-
-.search-dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    margin-top: 6px;
-    max-height: 220px;
-    overflow-y: auto;
-    z-index: 1000;
-    list-style: none;
-    padding: 6px 0;
-}
-
-.search-dropdown li {
-    padding: 10px 16px;
-    color: #1e293b;
-    font-size: 14px;
-    cursor: pointer;
-    text-align: left;
-    transition: background 0.2s ease;
-}
-
-.search-dropdown li:hover {
-    background-color: #f1f5f9;
-}
-
-.search-dropdown li span.admin-region {
-    font-size: 12px;
-    color: #64748b;
-    margin-left: 6px;
-}
-
-/* ==========================================================================
-   7. Media Queries (Responsive Mobile & Minimized Window Handling)
-   ========================================================================== */
-@media (max-width: 768px) {
+/* Responsive */
+@media (min-width: 481px) and (max-width: 768px) {
     /* ==========================================
        1. Global Mobile Reset & Body Controls
        ========================================== */
@@ -498,9 +409,13 @@ main #label {
         background-color: #f1f5f9;
     }
 
-    .dark body {
-        background-color: #0b0f19;
+    main {
+        width: 100%;
+        margin: 0 auto;
+        padding: 18px 16px 40px;
     }
+
+    .search-container { padding-top: 4px; }
 
     /* ==========================================
        3. Main Hero & Dynamic Content Wrapper
@@ -603,11 +518,6 @@ main #label {
         border: 1px solid rgba(255, 255, 255, 0.5) !important;
     }
 
-    .dark .search-result {
-        background: linear-gradient(135deg, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.7)) !important;
-        border: 1px solid rgba(255, 255, 255, 0.05) !important;
-    }
-
     .search-result img {
         display: block !important; /* Keep city image, but frame it cleanly */
         width: 100% !important;
@@ -629,10 +539,6 @@ main #label {
         flex-direction: column !important;
         align-items: flex-start !important;
         gap: 4px !important;
-    }
-
-    .dark .metric-item {
-        background: rgba(255, 255, 255, 0.03);
     }
 
     /* Horizontal Swipe Panel for Hourly Tracking */
@@ -717,65 +623,155 @@ main #label {
     }
 }
 
-/* Save the currently searched city as the default city */
-.default-city-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    margin-bottom: 14px;
-    padding: 8px 13px;
-    border: 1px solid #bfdbfe;
-    border-radius: 999px;
-    color: #1d4ed8;
-    background: #eff6ff;
-    box-shadow: 0 4px 10px rgba(37,99,235,.1);
-    font-size: 12px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
-}
-.default-city-button:hover {
-    color: #fff;
-    background: #2563eb;
-    box-shadow: 0 7px 14px rgba(37,99,235,.25);
-    transform: translateY(-2px);
-}
-.default-city-button:active { transform: translateY(0); }
-.default-city-button i { color: #f59e0b; }
-.default-city-button:hover i { color: #fef3c7; }
-.dark .default-city-button { border-color: #475569; color: #dbeafe; background: #334155; }
-.dark .default-city-button:hover { background: #2563eb; }
-
-@media (max-width: 600px) {
+@media (max-width: 480px) {
     .default-city-button { margin-bottom: 10px; padding: 7px 11px; }
 }
 
-/* Forecast page visual refresh — content and forecast values are unchanged. */
-main {
-    width: min(1100px, 90%);
-    margin: 0 auto;
-    padding: 28px 0 56px;
+@media (min-width: 769px) {
+    main {
+        width: min(1100px, 90%);
+        margin: 0 auto;
+        padding: 28px 0 56px;
+    }
 }
-.search-container { padding: 12px 0 24px; }
-.search-result {
-    border: 1px solid rgba(255, 255, 255, .72);
-    border-radius: 22px;
-    box-shadow: 0 14px 32px rgba(15, 23, 42, .14);
+
+/* Dark mode */
+.dark body {
+    background: linear-gradient(to bottom, #0f172a, #1e293b, #334155);
+    color: #f8fafc;
 }
-.seven-day-detail,
-.hourly-detail {
-    border: 1px solid rgba(226, 232, 240, .9);
-    border-radius: 18px;
-    box-shadow: 0 8px 20px rgba(15, 23, 42, .08);
+
+.dark header nav a {
+    color: #f1f5f9;
 }
-.seven-day-detail:hover,
-.hourly-detail:hover { transform: translateY(-4px); }
+
+.dark header nav a:hover,
+.dark header nav a#select {
+    color: #38bdf8;
+}
+
+.dark header nav button {
+    background-color: #374151;
+    color: #ffffff;
+}
+
+.dark header nav button:hover {
+    background-color: #4b5563;
+}
+
+.dark header nav button:active {
+    background-color: #2563eb;
+    color: #ffffff;
+}
+
+.dark .search-container h4,
+.dark main #label {
+    color: #f1f5f9;
+}
+
+.dark .search-box input[type="text"] {
+    background-color: #1e293b;
+    color: #f8fafc;
+    border: 1px solid #334155;
+}
+
+.dark .search-box input[type="text"]::placeholder {
+    color: #94a3b8;
+}
+
+.dark .dropdown div {
+    background-color: #1e293b;
+    color: rgb(255, 255, 255);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.dark .dropdown div:hover {
+    background: #111111;
+}
+
+.dark .search-result {
+    background-color: #1e293b;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.dark .search-detail h3,
+.dark .metric-label {
+    color: #94a3b8;
+}
+
+.dark .search-detail h1,
+.dark .metric-value {
+    color: #f8fafc;
+}
+
+.dark .metric-item {
+    border-bottom-color: #334155;
+}
+
+.dark .seven-day-detail,
+.dark .hourly-detail {
+    background-color: #1e293b;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.dark .seven-day-detail h3,
+.dark .seven-day-detail h2,
+.dark .hourly-detail h3 {
+    color: #f8fafc;
+}
+
+.dark .seven-day-detail p {
+    color: #94a3b8;
+}
+
+.dark .search-dropdown {
+    background: #1e293b;
+    border: 1px solid #334155;
+}
+
+.dark .search-dropdown li {
+    color: #f8fafc;
+}
+
+.dark .search-dropdown li:hover {
+    background-color: #334155;
+}
+
+.dark .search-dropdown li span.admin-region {
+    color: #94a3b8;
+}
+
+.dark .default-city-button {
+    border-color: #475569;
+    color: #dbeafe;
+    background: #334155;
+}
+
+.dark .default-city-button:hover {
+    background: #2563eb;
+}
+
 .dark .search-result,
 .dark .seven-day-detail,
-.dark .hourly-detail { border-color: #475569; }
+.dark .hourly-detail {
+    border-color: #475569;
+}
 
-@media (max-width: 768px) {
-    main { width: 100%; padding: 18px 16px 40px; }
-    .search-container { padding-top: 4px; }
-    .search-result { border-radius: 18px; }
+.dark footer {
+    background-color: #0f172a;
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .dark body {
+        background-color: #0b0f19;
+    }
+
+    .dark .search-result {
+        background: linear-gradient(135deg, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.7)) !important;
+        border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }
+
+    .dark .metric-item {
+        background: rgba(255, 255, 255, 0.03);
+    }
 }

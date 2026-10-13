@@ -1,3 +1,4 @@
+/* Regular styles */
 /* === Reset & Base: START === */
 *{
     margin: 0;
@@ -22,12 +23,6 @@ body {
 }
 
 /* === Reset & Base: END === */
-
-/* === Dark Mode: START === */
-.dark body{
-    background: linear-gradient(to bottom, #0f172a, #1e293b, #334155);
-}
-/* === Dark Mode: END === */
 
 /* === Navigation: START === */
 
@@ -117,10 +112,6 @@ header nav a#select{
     color: #ffffff;
 }
 
-.dark .contact-title h1{
-    color: #ffffff;
-}
-
 .contact-title p {
     color: #ffffff;
 }
@@ -184,54 +175,6 @@ header nav a#select{
     height: 130px;
     resize: none;
 }
-
-/* Dark Mode Of Form */
-
-.dark input:-webkit-autofill,
-.dark textarea:-webkit-autofill,
-.dark select:-webkit-autofill,
-.dark input:-webkit-autofill:hover,
-.dark textarea:-webkit-autofill:hover,
-.dark select:-webkit-autofill:hover,
-.dark input:-webkit-autofill:focus,
-.dark textarea:-webkit-autofill:focus,
-.dark select:-webkit-autofill:focus,
-.dark input:-webkit-autofill:active,
-.dark textarea:-webkit-autofill:active,
-.dark select:-webkit-autofill:active {
-    -webkit-text-fill-color: #ffffff !important;
-    background-color: rgba(255,255,255,0.1) !important;
-    -webkit-box-shadow: 0 0 0px 1000px rgba(255,255,255,0.1) inset !important;
-    box-shadow: 0 0 0px 1000px rgba(255,255,255,0.1) inset !important;
-    background-clip: padding-box !important;
-    transition: background-color 5000s ease-in-out 0s !important;
-}
-
-/* Keep focused inputs dark in .dark mode */
-.dark #contact-form input:focus,
-.dark #contact-form textarea:focus {
-    background: rgba(255,255,255,0.1) !important;
-    color: #ffffff !important;
-}
-
-/* Additional vendor/internal pseudo selectors for some Chromium builds */
-.dark input:-internal-autofill-selected,
-.dark textarea:-internal-autofill-selected,
-.dark select:-internal-autofill-selected {
-    -webkit-text-fill-color: #ffffff !important;
-    background-color: rgba(255,255,255,0.1) !important;
-}
-.dark #contact-form {
-    background: rgba(255,255,255,0.1);
-}
-
-.dark #contact-form input,
-.dark #contact-form textarea {
-    background: rgba(255,255,255,0.1);
-    color: white;
-    border-color: #334155;
-}
-
 
 /* Send Button */
 
@@ -304,36 +247,6 @@ header nav a#select{
     line-height: 1.6;
 }
 
-/* Dark Mode of Get in touch */
-
-
-.dark .get-touch {
-    background: rgba(255,255,255,0.1);
-}
-
-.dark .get-touch h2{
-    color: white;
-}
-
-.dark .get-touch h4 {
-    color: white;
-}
-
-.dark .info{
-    color: white;
-}
-
-.dark .info i{
-    color: #1d78dc;
-}
-
-.dark .info h4 {
-    color: rgb(255, 255, 255);
-}
-
-.dark .info p {
-    color: rgba(255, 255, 255, 0.8);
-}
 /* Social */
 
 .follow {
@@ -389,11 +302,8 @@ header nav a#select{
 
 /* === Contact Content: END === */
 
-/* === Responsive: START === */
-/* ================= RESPONSIVE ================= */
-
-@media (max-width: 900px) {
-
+/* Responsive */
+@media (min-width: 481px) and (max-width: 768px) {
     .contact-content {
         grid-template-columns: 1fr 1fr;
     }
@@ -403,9 +313,7 @@ header nav a#select{
     }
 }
 
-
-@media (max-width: 650px) {
-
+@media (max-width: 480px) {
     header {
         height: auto;
         padding: 20px;
@@ -426,4 +334,78 @@ header nav a#select{
         grid-column: span 1;
     }
 }
-/* === Responsive: END === */
+
+/* Dark mode */
+.dark body {
+    background: linear-gradient(to bottom, #0f172a, #1e293b, #334155);
+}
+
+.dark .contact-title h1 {
+    color: #ffffff;
+}
+
+.dark input:-webkit-autofill,
+.dark textarea:-webkit-autofill,
+.dark select:-webkit-autofill,
+.dark input:-webkit-autofill:hover,
+.dark textarea:-webkit-autofill:hover,
+.dark select:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus,
+.dark textarea:-webkit-autofill:focus,
+.dark select:-webkit-autofill:focus,
+.dark input:-webkit-autofill:active,
+.dark textarea:-webkit-autofill:active,
+.dark select:-webkit-autofill:active {
+    -webkit-text-fill-color: #ffffff !important;
+    background-color: rgba(255,255,255,0.1) !important;
+    -webkit-box-shadow: 0 0 0px 1000px rgba(255,255,255,0.1) inset !important;
+    box-shadow: 0 0 0px 1000px rgba(255,255,255,0.1) inset !important;
+    background-clip: padding-box !important;
+    transition: background-color 5000s ease-in-out 0s !important;
+}
+
+.dark #contact-form input:focus,
+.dark #contact-form textarea:focus {
+    background: rgba(255,255,255,0.1) !important;
+    color: #ffffff !important;
+}
+
+.dark input:-internal-autofill-selected,
+.dark textarea:-internal-autofill-selected,
+.dark select:-internal-autofill-selected {
+    -webkit-text-fill-color: #ffffff !important;
+    background-color: rgba(255,255,255,0.1) !important;
+}
+
+.dark #contact-form {
+    background: rgba(255,255,255,0.1);
+}
+
+.dark #contact-form input,
+.dark #contact-form textarea {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border-color: #334155;
+}
+
+.dark .get-touch {
+    background: rgba(255,255,255,0.1);
+}
+
+.dark .get-touch h2,
+.dark .get-touch h4,
+.dark .info {
+    color: white;
+}
+
+.dark .info i {
+    color: #1d78dc;
+}
+
+.dark .info h4 {
+    color: rgb(255, 255, 255);
+}
+
+.dark .info p {
+    color: rgba(255, 255, 255, 0.8);
+}

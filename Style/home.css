@@ -1,3 +1,4 @@
+/* Regular styles */
 /* === Reset & Base: START === */
 * {
     margin: 0;
@@ -13,75 +14,6 @@ body {
 }
 
 /* === Reset & Base: END === */
-
-/* ==========================================================================
-    Full Color Dark Mode Overrides
-    ========================================================================== */
-.dark body{
-/* === Dark Mode: START === */
-    background-color: #0f172a;
-}
-
-.dark .container {
-    background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)), url("images/images.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100% 100%;
-}
-
-.dark .popular-city-weather-card {
-    background: linear-gradient(to bottom, #0f172a, #1e293b, #334155);
-}
-
-.dark .popular-city-weather-card h2 {
-    color: #f8fafc;
-}
-
-.dark .city {
-    background-color: #1e293b;
-    border-color: #334155;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-.dark .city-detail h3 {
-    color: #f8fafc;
-}
-
-.dark .city-detail p {
-    color: #94a3b8;
-}
-
-.dark .city-detail h1 {
-    color: #38bdf8;
-}
-
-.dark .search-box input[type="text"] {
-    background-color: #1e293b;
-    color: #f8fafc;
-    border: 1px solid #334155;
-}
-
-.dark .search-box input[type="text"]::placeholder {
-    color: #94a3b8;
-}
-
-.dark .search-dropdown {
-    background: #1e293b;
-    border: 1px solid #334155;
-}
-
-.dark .search-dropdown li {
-    color: #f8fafc;
-}
-
-.dark .search-dropdown li:hover {
-    background-color: #334155;
-}
-
-.dark .search-dropdown li span.admin-region {
-    color: #94a3b8;
-}
-/* === Dark Mode: END === */
 
 /* footer color moved to site-chrome.css for consistent behavior across pages */
 /* === Header & Hero: START === */
@@ -181,21 +113,6 @@ header nav button:active {
     color: #ffffff;            /* White icon when active */
 }
 
-/* Dark Mode Overrides */
-.dark header nav button {
-    background-color: #374151; /* Dark Normal */
-    color: #ffffff;            /* White icon for dark mode */
-}
-
-.dark header nav button:hover {
-    background-color: #4b5563; /* Dark Hover */
-}
-
-.dark header nav button:active {
-    background-color: #2563eb; /* Dark Active */
-    color: #ffffff;
-}
-
 /* Main Hero Content */
 .content {
     display: flex;
@@ -262,17 +179,8 @@ header nav button:active {
     border-bottom: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 21px;
 }
-.dark .dropdown div {
-    background-color: #1e293b;
-    color: white;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-}
-
 .dropdown div:hover {
     background: #eeeeee;
-}
-.dark .dropdown div:hover {
-    background: #111111;
 }
 
 .search-box button {
@@ -314,24 +222,18 @@ header nav button:active {
     overflow: hidden;
 }
 
-.weather-card-detail {
+.weather-card-detail{
     padding: 25px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: row;
+    gap: 80px;
+    text-align: center;
 }
 
 .weather-card-detail h4 {
     font-size: 12px;
     letter-spacing: 1px;
     opacity: 0.8;
-}
-
-.weather-card-details{
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    text-align: center;
 }
 
 .weather-card-detail a{
@@ -497,19 +399,47 @@ header nav button:active {
     margin-left: 6px;
 }
 
-/* Responsive Breakpoints */
-/* === Header & Hero: END === */
-@media (max-width: 768px) {
+/* Forecast action in the home weather card */
+#forecast-link {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    min-width: 52px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid rgba(255,255,255,.52);
+    border-radius: 999px;
+    color: #fff;
+    background: rgba(255,255,255,.16);
+    box-shadow: 0 5px 14px rgba(15,23,42,.16);
+    font-size: 11px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
+#forecast-link:hover {
+    color: #0f3f74;
+    background: #fff;
+    box-shadow: 0 8px 18px rgba(15,23,42,.24);
+    transform: translateY(-2px);
+}
+#forecast-link i { font-size: 10px; transition: transform .2s ease; }
+#forecast-link:hover i { transform: translateX(3px); }
+
+/* Responsive */
+@media (min-width: 481px) and (max-width: 768px) {
     /* ==========================================
        1. Global Mobile Reset & Body Controls
        ========================================== */
     body {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         background-color: #f1f5f9;
-    }
-
-    .dark body {
-        background-color: #0b0f19;
     }
 
     /* ==========================================
@@ -605,6 +535,9 @@ header nav button:active {
         color: #38bdf8;
     }
 
+    .popular-city-weather-card { padding: 34px 16px; }
+    .popular-city-weather-card h2 { margin-bottom: 18px; }
+
     /* Glassmorphism for Search Results Screen (Forecast.html) */
     .search-result {
         flex-direction: column !important;
@@ -614,11 +547,6 @@ header nav button:active {
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
         border: 1px solid rgba(255, 255, 255, 0.5) !important;
-    }
-
-    .dark .search-result {
-        background: linear-gradient(135deg, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.7)) !important;
-        border: 1px solid rgba(255, 255, 255, 0.05) !important;
     }
 
     .search-result img {
@@ -642,10 +570,6 @@ header nav button:active {
         flex-direction: column !important;
         align-items: flex-start !important;
         gap: 4px !important;
-    }
-
-    .dark .metric-item {
-        background: rgba(255, 255, 255, 0.03);
     }
 
     /* Horizontal Swipe Panel for Hourly Tracking */
@@ -727,64 +651,145 @@ header nav button:active {
     }
 }
 
-/* Forecast action in the home weather card */
-#forecast-link {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    min-width: 52px;
-    height: 32px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    margin: 0;
-    padding: 0;
-    border: 1px solid rgba(255,255,255,.52);
-    border-radius: 999px;
-    color: #fff;
-    background: rgba(255,255,255,.16);
-    box-shadow: 0 5px 14px rgba(15,23,42,.16);
-    font-size: 11px;
-    font-weight: 700;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
-}
-#forecast-link:hover {
-    color: #0f3f74;
-    background: #fff;
-    box-shadow: 0 8px 18px rgba(15,23,42,.24);
-    transform: translateY(-2px);
-}
-#forecast-link i { font-size: 10px; transition: transform .2s ease; }
-#forecast-link:hover i { transform: translateX(3px); }
+@media (max-width: 480px) {
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f1f5f9;
+    }
 
-@media (max-width: 600px) {
-    #forecast-link { top: 12px; right: 12px; min-width: 48px; height: 30px; }
+    .container {
+        min-height: auto !important;
+        padding: 0 0 24px 0 !important;
+    }
+
+    .content {
+        gap: 18px !important;
+        margin-top: 16px !important;
+    }
+
+    .content-text h1 {
+        font-size: 26px !important;
+    }
+
+    .weather-card {
+        border-radius: 20px !important;
+    }
+
+    .popular-city-weather-card {
+        padding: 24px 12px !important;
+    }
+
+    .footer-content {
+        padding-bottom: 16px !important;
+    }
 }
 
-/* Home page visual refresh — keeps all existing weather data and images. */
-.popular-city-weather-card {
-    width: 100%;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 54px 5%;
+/* Dark mode */
+.dark body {
+    background-color: #0f172a;
 }
 
-.popular-city-weather-card h2 { font-size: clamp(1.45rem, 3vw, 1.8rem); }
-.weather-card {
-    border: 1px solid rgba(255, 255, 255, .34);
-    box-shadow: 0 18px 42px rgba(15, 23, 42, .22);
+.dark .container {
+    background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)), url("images/images.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
 }
-.city {
-    border-radius: 20px;
-    border-color: #e2e8f0;
-    box-shadow: 0 10px 24px rgba(15, 23, 42, .08);
-}
-.city:hover { box-shadow: 0 16px 30px rgba(15, 23, 42, .15); }
 
-@media (max-width: 768px) {
-    .popular-city-weather-card { padding: 34px 16px; }
-    .popular-city-weather-card h2 { margin-bottom: 18px; }
+.dark .popular-city-weather-card {
+    background: linear-gradient(to bottom, #0f172a, #1e293b, #334155);
+}
+
+.dark .popular-city-weather-card h2 {
+    color: #f8fafc;
+}
+
+.dark .city {
+    background-color: #1e293b;
+    border-color: #334155;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dark .city-detail h3 {
+    color: #f8fafc;
+}
+
+.dark .city-detail p {
+    color: #94a3b8;
+}
+
+.dark .city-detail h1 {
+    color: #38bdf8;
+}
+
+.dark .search-box input[type="text"] {
+    background-color: #1e293b;
+    color: #f8fafc;
+    border: 1px solid #334155;
+}
+
+.dark .search-box input[type="text"]::placeholder {
+    color: #94a3b8;
+}
+
+.dark .search-dropdown {
+    background: #1e293b;
+    border: 1px solid #334155;
+}
+
+.dark .search-dropdown li {
+    color: #f8fafc;
+}
+
+.dark .search-dropdown li:hover {
+    background-color: #334155;
+}
+
+.dark .search-dropdown li span.admin-region {
+    color: #94a3b8;
+}
+
+.dark header nav button {
+    background-color: #374151;
+    color: #ffffff;
+}
+
+.dark header nav button:hover {
+    background-color: #4b5563;
+}
+
+.dark header nav button:active {
+    background-color: #2563eb;
+    color: #ffffff;
+}
+
+.dark .dropdown div {
+    background-color: #1e293b;
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.dark .dropdown div:hover {
+    background: #111111;
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .dark body {
+        background-color: #0b0f19;
+    }
+
+    .dark .search-result {
+        background: linear-gradient(135deg, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.7)) !important;
+        border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }
+
+    .dark .metric-item {
+        background: rgba(255, 255, 255, 0.03);
+    }
+}
+
+@media (max-width: 480px) {
+    .dark body {
+        background-color: #0b0f19;
+    }
 }

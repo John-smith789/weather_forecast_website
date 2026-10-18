@@ -32,8 +32,8 @@
             <a href="tips.html">Tips</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
-            <button type="button" aria-label="Toggle theme" onclick="Toggle()"><i id="theme-icon" class="fa-solid fa-moon"></i></button>
         </nav>
+        <button class="theme-toggle" type="button" aria-label="Toggle theme" onclick="Toggle()"><i id="theme-icon" class="fa-solid fa-moon"></i></button>
     </header>
   
     <main>
@@ -128,49 +128,8 @@
                 <p>23°C</p>
             </div>
         </div>
-        <h3 id="label">Hourly Forecast</h3>
-        <div class="hourly-forecast">
-            <div class="hourly-detail">
-                <h3>Now</h3>
-                <i class="fa-solid fa-sun"></i>
-                <h3>30°C</h3>
-            </div>
-            <div class="hourly-detail">
-                <h3>10 AM</h3>
-                <i class="fa-solid fa-sun"></i>
-                <h3>31°C</h3>
-            </div>
-            <div class="hourly-detail">
-                <h3>11 AM</h3>
-                <i class="fa-solid fa-sun"></i>
-                <h3>32°C</h3>
-            </div>
-            <div class="hourly-detail">
-                <h3>12 AM</h3>
-                <i class="fa-solid fa-sun"></i>
-                <h3>32°C</h3>
-            </div>
-            <div class="hourly-detail">
-                <h3>1 PM</h3>
-                <i class="fa-solid fa-cloud-sun"></i>
-                <h3>31°C</h3>
-            </div>
-            <div class="hourly-detail">
-                <h3>2 PM</h3>
-                <i class="fa-solid fa-cloud-sun"></i>
-                <h3>30°C</h3>
-            </div>
-            <div class="hourly-detail">
-                <h3>3 PM</h3>
-                <i class="fa-solid fa-cloud-sun"></i>
-                <h3>29°C</h3>
-            </div>
-            <div class="hourly-detail">
-                <h3>4 PM</h3>
-                <i class="fa-solid fa-sun"></i>
-                <h3>28°C</h3>
-            </div>
-        </div>
+        <h3 id="hourly-label">Hourly Forecast</h3>
+        <div class="hourly-forecast" aria-labelledby="hourly-label" aria-live="polite"></div>
     </main>
     <footer>
         <div class="footer-content">

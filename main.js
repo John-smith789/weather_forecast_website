@@ -61,6 +61,7 @@ async function getWeather(city) {
         hourly: "temperature_2m,weather_code",
         daily: "weather_code,temperature_2m_max,temperature_2m_min",
         timezone: "Asia/Yangon",
+        past_days: "2",
         forecast_days: "7"
     });
     const response = await fetch(`https://api.open-meteo.com/v1/forecast?${params}`);
@@ -118,7 +119,11 @@ function renderCurrent(city, weather) {
 function renderForecast(weather) {
     const dailyContainer = document.querySelector(".seven-day-forecast");
     if (dailyContainer && weather.daily) {
-        dailyContainer.innerHTML = weather.daily.time.map((date, index) => {
+        const currentDate = weather.current.time.slice(0, 10);
+        const forecastDays = weather.daily.time
+            .map((date, index) => ({ date, index }))
+            .filter(({ date }) => date >= currentDate);
+        dailyContainer.innerHTML = forecastDays.map(({ date, index }) => {
             // Noon UTC prevents the displayed Myanmar date from shifting on browsers in other timezones.
             const localDate = new Date(`${date}T12:00:00Z`);
             const dateOptions = { timeZone: "Asia/Yangon" };
@@ -130,15 +135,29 @@ function renderForecast(weather) {
 
     const hourlyContainer = document.querySelector(".hourly-forecast");
     if (hourlyContainer && weather.hourly) {
+        const currentHour = weather.current.time.slice(0, 13);
+        const matchingHourIndex = weather.hourly.time.findIndex(time => time.slice(0, 13) === currentHour);
         const nextHourIndex = weather.hourly.time.findIndex(time => time > weather.current.time);
-        const startIndex = nextHourIndex > 0 ? nextHourIndex - 1 : 0;
-        const hours = weather.hourly.time.slice(startIndex, startIndex + 8);
+        const currentIndex = matchingHourIndex >= 0
+            ? matchingHourIndex
+            : Math.max(0, nextHourIndex - 1);
+        const startIndex = Math.max(0, currentIndex - 8);
+        const endIndex = Math.min(weather.hourly.time.length, currentIndex + 9);
 
-        hourlyContainer.innerHTML = hours.map((time, index) => {
+        hourlyContainer.innerHTML = weather.hourly.time.slice(startIndex, endIndex).map((time, index) => {
             const weatherIndex = startIndex + index;
-            const label = index === 0 ? "Now" : formatMyanmarHour(time);
-            return `<div class="hourly-detail"><h3>${label}</h3><i class="fa-solid ${weatherIcon(weather.hourly.weather_code[weatherIndex])}"></i><h3>${Math.round(weather.hourly.temperature_2m[weatherIndex])}°C</h3></div>`;
+            const isCurrentHour = weatherIndex === currentIndex;
+            const label = isCurrentHour ? "Now" : formatMyanmarHour(time);
+            const currentAttributes = isCurrentHour ? ' class="hourly-detail is-current" aria-current="time"' : ' class="hourly-detail"';
+            return `<div${currentAttributes}><h3>${label}</h3><i class="fa-solid ${weatherIcon(weather.hourly.weather_code[weatherIndex])}"></i><h3>${Math.round(weather.hourly.temperature_2m[weatherIndex])}°C</h3></div>`;
         }).join("");
+        const currentCard = hourlyContainer.querySelector(".is-current");
+        if (currentCard) {
+            const containerBounds = hourlyContainer.getBoundingClientRect();
+            const cardBounds = currentCard.getBoundingClientRect();
+            hourlyContainer.scrollLeft += cardBounds.left - containerBounds.left
+                - (hourlyContainer.clientWidth - cardBounds.width) / 2;
+        }
     }
 }
 

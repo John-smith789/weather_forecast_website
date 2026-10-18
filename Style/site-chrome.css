@@ -4,12 +4,15 @@ header {
     width: min(1200px, 100%);
     margin: 0 auto;
     padding: 25px 5%;
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    grid-template-areas: "brand nav toggle";
     align-items: center;
-    justify-content: space-between;
     gap: 20px;
     line-height: 1.6;
 }
+
+.logo { grid-area: brand; }
 
 .logo-text p { 
     margin-top: 2px; 
@@ -18,9 +21,10 @@ header {
 }
 
 header nav { 
+    grid-area: nav;
     display: flex; 
     align-items: center; 
-    justify-content: flex-end; 
+    justify-content: center;
     flex-wrap: wrap; 
     gap: 20px; 
 }
@@ -38,7 +42,9 @@ header nav a:hover, header nav a#select {
     text-underline-offset: 8px; 
 }
 
-header nav button {
+header > .theme-toggle {
+    grid-area: toggle;
+    justify-self: end;
     width: 34px; 
     height: 34px; 
     border: 0; 
@@ -50,9 +56,14 @@ header nav button {
     transition: transform .2s ease, background .2s ease;
 }
 
-header nav button:hover { 
-    transform: translateY(-2px); 
-    background: #dbeafe; 
+header > .theme-toggle:hover {
+    transform: translateY(-2px);
+    background: #dbeafe;
+}
+
+header > .theme-toggle:active {
+    background: #2563eb;
+    color: #fff;
 }
 
 /* === Header & Nav: END === */
@@ -69,22 +80,26 @@ footer {
 
 .footer-content {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
     padding-bottom: 25px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
 }
 
 .footer-brand {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
 }
 
 .footer-links {
     display: flex;
+    justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
 }
@@ -101,6 +116,7 @@ footer {
 
 .social-buttons {
     display: flex;
+    justify-content: center;
     gap: 10px;
 }
 
@@ -181,47 +197,46 @@ footer {
 }
 
 /* Responsive layout */
-@media (min-width: 481px) and (max-width: 768px) {
+@media (max-width: 768px) {
     body > header,
     .container > header {
         position: relative;
         width: 100% !important;
-        padding: 16px 20px !important;
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
+        padding: 16px !important;
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas:
+            "brand toggle"
+            "nav nav";
         align-items: center !important;
-        justify-content: space-between !important;
-        gap: 20px !important;
+        gap: 10px 16px !important;
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
     }
 
-    .logo { gap: 8px !important; min-height: 32px; }
+    .logo { grid-area: brand; gap: 8px !important; min-height: 32px; }
     .logo > i { font-size: 28px !important; }
     .logo-text h2 { font-size: 18px !important; }
     .logo-text p { display: none; }
 
     body > header nav,
     .container > header nav {
-        display: grid !important;
-        flex: 0 0 100%;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-area: nav;
+        display: flex !important;
+        justify-content: center !important;
         width: 100% !important;
-        gap: 10px 16px !important;
-        margin-top: 12px !important;
-        padding: 4px 0 8px;
-        overflow-x: auto;
+        gap: 8px 16px !important;
+        margin: 0 !important;
+        padding: 4px 0 !important;
+        overflow: visible;
         text-align: center;
-        white-space: nowrap;
-        scrollbar-width: none;
+        flex-wrap: wrap;
     }
-    header nav::-webkit-scrollbar { display: none; }
 
     body > header nav a,
     .container > header nav a {
         min-width: 0;
-        padding: 6px 16px !important;
+        padding: 6px 10px !important;
         border-radius: 20px;
         background: rgba(255, 255, 255, .15);
         border-bottom: 0 !important;
@@ -230,40 +245,38 @@ footer {
         line-height: 1.2;
         text-decoration: none !important;
     }
-    header nav a:nth-child(5) { grid-column: 1 / span 4; justify-self: center; width: 50%; }
     header nav a#select { color: #fff !important; background: #2563eb !important; }
 
-    body > header nav button,
-    .container > header nav button {
-        position: absolute;
-        top: 16px;
-        right: 20px;
+    body > header > .theme-toggle,
+    .container > header > .theme-toggle {
+        grid-area: toggle;
+        position: static !important;
         width: 32px;
         height: 32px;
+        justify-self: end;
         margin: 0 !important;
     }
 
     footer { padding: 32px 16px 24px !important; }
-    .footer-content { flex-direction: column; justify-content: center; gap: 20px; text-align: center; }
-    .footer-brand, .footer-links, .social-buttons { justify-content: center; }
+    .footer-content { gap: 20px; }
     .footer-links { gap: 16px !important; }
 }
 
 @media (max-width: 480px) {
     body > header,
     .container > header { padding-inline: 14px !important; }
-    body > header nav,
-    .container > header nav { column-gap: 10px !important; }
     body > header nav a,
     .container > header nav a { padding-inline: 8px !important; font-size: 13px !important; }
-    body > header nav button,
-    .container > header nav button { right: 14px; }
 }
 
 /* Dark mode */
-.dark header nav button {
+.dark header > .theme-toggle {
     color: #fff;
     background: #334155;
+}
+
+.dark header > .theme-toggle:hover {
+    background: #4b5563;
 }
 
 .dark .social-buttons #facebook {

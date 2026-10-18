@@ -273,7 +273,8 @@ main {
 
 .search-result > i {
     font-size: 70px;
-    color: #facc15;
+    color: #fff;
+    text-align: center;
 }
 
 /* Modern Grid Box for Weather Data Parameters */
@@ -369,34 +370,74 @@ main #label {
 }
 
 .hourly-forecast {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    display: flex;
     gap: 12px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-color: #60a5fa rgba(148, 163, 184, .25);
+    scrollbar-width: thin;
     margin-bottom: 2rem;
+    padding: 4px 4px 14px;
 }
 
 .hourly-detail {
+    flex: 0 0 108px;
     background-color: white;
     border: 1px solid rgba(226, 232, 240, .9);
     border-radius: 18px;
     padding: 15px 10px;
     text-align: center;
     box-shadow: 0 8px 20px rgba(15, 23, 42, .08);
+    scroll-snap-align: center;
     transition: transform .2s ease;
 }
 
+.hourly-forecast::-webkit-scrollbar {
+    height: 8px;
+}
+
+.hourly-forecast::-webkit-scrollbar-track {
+    background: rgba(148, 163, 184, .25);
+    border-radius: 8px;
+}
+
+.hourly-forecast::-webkit-scrollbar-thumb {
+    background: #60a5fa;
+    border-radius: 8px;
+}
+
+.hourly-forecast::-webkit-scrollbar-thumb:hover {
+    background: #2563eb;
+}
+
 .hourly-detail:hover { transform: translateY(-4px); }
+
+.hourly-detail.is-current {
+    background-color: #dbeafe;
+    border-color: #2563eb;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, .24);
+}
 
 .hourly-detail h3 {
     font-size: 0.9rem;
     color: #1e293b;
 }
 
+.hourly-detail.is-current h3 {
+    color: #1d4ed8;
+    font-weight: 700;
+}
+
 .hourly-detail i {
     font-size: 22px;
-    color: #facc15;
+    color: #3b82f6;
     margin: 10px 0;
     display: block;
+}
+
+.hourly-detail.is-current i {
+    color: #2563eb;
 }
 
 /* Responsive */
@@ -543,13 +584,12 @@ main #label {
 
     /* Horizontal Swipe Panel for Hourly Tracking */
     .hourly-forecast {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 20px !important;
+        gap: 10px !important;
+        padding: 4px 2px 12px !important;
     }
 
     .hourly-detail {
-        min-width: 85px !important;
-        flex-shrink: 0 !important;
+        flex-basis: 96px !important;
         border-radius: 16px !important;
         box-shadow: 0 4px 10px rgba(0,0,0,0.03) !important;
     }
@@ -623,8 +663,117 @@ main #label {
     }
 }
 
+@media (max-width: 768px) {
+    main #label,
+    #hourly-label {
+        text-align: center;
+    }
+
+    .seven-day-detail,
+    .hourly-detail {
+        text-align: center;
+    }
+
+    .seven-day-detail i,
+    .hourly-detail i {
+        color: #3b82f6;
+    }
+}
+
 @media (max-width: 480px) {
+    header {
+        padding: 14px !important;
+        gap: 10px !important;
+    }
+
+    .logo { gap: 8px; }
+    .logo > i { font-size: 28px; }
+    .logo-text h2 { font-size: 18px; }
+    .logo-text p { display: none; }
+
+    header nav {
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        font-size: 13px;
+    }
+
+    header nav a { white-space: nowrap; }
+    main {
+        width: 100%;
+        padding: 14px 14px 32px;
+    }
+
+    .search-container { padding: 8px 0 18px; }
+    .search-box { max-width: 100%; }
     .default-city-button { margin-bottom: 10px; padding: 7px 11px; }
+
+    .search-result {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+        margin-bottom: 1.75rem;
+        padding: 20px 16px;
+        border-radius: 20px;
+    }
+
+    .search-detail { text-align: center; }
+    .search-detail h1 { font-size: 42px; }
+    .search-result > i {
+        align-self: center;
+        margin-inline: auto;
+        font-size: 54px;
+        color: #fff;
+    }
+
+    .search-data-grid {
+        width: 100%;
+        min-width: 0;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .metric-item {
+        min-width: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        padding: 10px;
+        border: 0;
+        border-radius: 12px;
+        background: rgba(15, 23, 42, .04);
+    }
+
+    .metric-value { text-align: left; }
+
+    .search-result img {
+        width: 100%;
+        height: 140px;
+    }
+
+    main #label { font-size: 1.15rem; }
+
+    .seven-day-forecast {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .seven-day-detail {
+        padding: 14px 8px;
+        border-radius: 16px;
+    }
+
+    .seven-day-detail i { font-size: 24px; }
+
+    .hourly-forecast {
+        gap: 8px;
+        padding-bottom: 12px;
+    }
+
+    .hourly-detail {
+        flex-basis: 92px;
+        padding: 13px 8px;
+    }
 }
 
 @media (min-width: 769px) {
@@ -714,10 +863,21 @@ main #label {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
+.dark .hourly-detail.is-current {
+    background-color: #1e3a8a;
+    border-color: #60a5fa;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .35);
+}
+
 .dark .seven-day-detail h3,
 .dark .seven-day-detail h2,
 .dark .hourly-detail h3 {
     color: #f8fafc;
+}
+
+.dark .hourly-detail.is-current h3,
+.dark .hourly-detail.is-current i {
+    color: #bfdbfe;
 }
 
 .dark .seven-day-detail p {
@@ -773,5 +933,59 @@ main #label {
 
     .dark .metric-item {
         background: rgba(255, 255, 255, 0.03);
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        position: relative;
+        align-items: center;
+    }
+
+    header .logo {
+        flex: 1;
+        min-width: 0;
+        padding-right: 0;
+    }
+
+    .seven-day-detail i,
+    .hourly-detail i,
+    .hourly-detail.is-current i {
+        width: fit-content;
+        margin: 10px auto;
+        color: #3b82f6;
+        text-align: center;
+    }
+
+    footer,
+    .footer-content,
+    .footer-brand,
+    .footer-links,
+    .social-buttons,
+    .footer-bottom {
+        text-align: center;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footer-brand,
+    .footer-links,
+    .social-buttons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .dark .seven-day-detail i,
+    .dark .hourly-detail i {
+        color: #60a5fa;
+    }
+
+    .dark .hourly-detail.is-current i {
+        color: #bfdbfe;
     }
 }

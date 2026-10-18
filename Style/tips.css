@@ -472,7 +472,11 @@ main {
 @media (max-width: 480px) {
     .hero { padding: 30px 0 24px; }
     .hero-title { font-size: 2rem; }
-    .tips-grid { gap: 16px; margin-bottom: 38px; }
+    .tips-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+        margin-bottom: 38px;
+    }
     .tip-card { padding: 24px 20px; border-radius: 18px; }
 }
 
